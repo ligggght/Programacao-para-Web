@@ -1,0 +1,7 @@
+[Sun Aug 24 00:41:39 2025] PHP 8.2.29 Development Server (http://127.0.0.1:8080) started
+[Sun Aug 24 00:41:41 2025] 127.0.0.1:40182 Accepted
+[Sun Aug 24 00:41:41 2025] 127.0.0.1:40182 [200]: GET /index.html
+[Sun Aug 24 00:41:41 2025] 127.0.0.1:40182 Closing
+[Sun Aug 24 00:41:41 2025] 127.0.0.1:40184 Accepted
+[Sun Aug 24 00:41:41 2025] 127.0.0.1:40184 [200]: GET /CSS/styles.css
+[Sun Aug 24 00:41:41 2025] 127.0.0.1:40184 Closing

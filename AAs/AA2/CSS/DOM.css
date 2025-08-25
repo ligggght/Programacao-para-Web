@@ -1,9 +1,11 @@
+/* display: block; - permite main cobrir toda area */
 body {
 font-family: "Press Start 2P", "Courier New", monospace;
 background-color: var(--background-color);
 color: var(--neon-green);
 padding: 2rem;
 position: relative;
+display: block;
 }
 
 ul {
@@ -39,12 +41,6 @@ li:nth-child(5) {
 animation-delay: 0.5s;
 }
 
-li:hover {
-  background: rgba(0, 255, 65, 0.08);
-  box-shadow: 0 0 4px var(--neon-green);
-  transform: translateX(2px);
-}
-
 /* Summary como nó colapsável */
 details summary {
 list-style: none;
@@ -78,4 +74,15 @@ padding-left: 1.5rem;
 
 .nav-li{
     border-left: 0px;
+}
+
+/* Evita que o hover padrão dos li afete os li dentro do nav */
+li:hover:not(nav li:hover) {
+  background: rgba(0, 255, 65, 0.08);
+  box-shadow: 0 0 4px var(--neon-green);
+  transform: translateX(2px);
+}
+
+main {
+    margin: 1rem 0;
 }

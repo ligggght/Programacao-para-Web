@@ -1,175 +1,1532 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Mind - Projeto Web</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="CSS/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM - Árvore Interativa</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/DOM.css" />
+  </head>
+
+  <body>
     <header>
-        <h1>MASTER MIND - DOM</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Jogo</a></li>
-                <li><a href="teste.html">Teste</a></li>
-            </ul>
-        </nav>
+      <h1>MASTER MIND - DOM</h1>
+      <nav>
+        <ul>
+          <li class="nav-li"><a href="index.html">Jogo</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
-        <section id="arvore" class="DOM-section">
-            <h2>Árvore DOM do index.html</h2>
+      <h1>Árvore DOM do index.html</h1>
 
-        <details open>
-        <summary>body</summary>
-        <ul>
-            <li>header</li>
-            <li>main</li>
-            <li>footer</li>
-        </ul>
-        </details>
+      <span style="margin-bottom: 100px">&lt;!DOCTYPE html&gt;</span>
 
+      <details open>
+        <summary>&lt;html&gt;</summary>
         <ul>
-            <li>html
-                <ul>
-                    <li>head
+          <li>
+            <details>
+              <summary>&lt;head&gt;</summary>
+              <ul>
+                <li>
+                  <span>
+                    meta
+                    <span class="attr-name">[charset=</span
+                    ><span class="attr-value">"UTF-8"</span
+                    ><span class="attr-name">]</span>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    meta
+                    <span class="attr-name">[name=</span
+                    ><span class="attr-value">"viewport"</span>
+                    <span class="attr-name">content=</span
+                    ><span class="attr-value"
+                      >"width=device-width, initial-scale=1.0"</span
+                    ><span class="attr-name">]</span>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    title
+                    <ul>
+                      <li>
+                        <span class="attr-name"
+                          >"Master Mind - Projeto Web"</span
+                        >
+                      </li>
+                    </ul>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    link
+                    <span class="attr-name">[rel=</span
+                    ><span class="attr-value">"icon"</span>
+                    <span class="attr-name">href=</span
+                    ><span class="attr-value">"favicon.ico"</span>
+                    <span class="attr-name">type=</span
+                    ><span class="attr-value">"image/x-icon"</span
+                    ><span class="attr-name">]</span>
+                  </span>
+                </li>
+                <li>
+                  <span>
+                    link
+                    <span class="attr-name">[rel=</span
+                    ><span class="attr-value">"stylesheet"</span>
+                    <span class="attr-name">href=</span
+                    ><span class="attr-value">"CSS/styles.css"</span
+                    ><span class="attr-name">]</span>
+                  </span>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li>
+            <details open>
+              <summary>&lt;body&gt;</summary>
+              <ul>
+                <li>
+                  <details>
+                    <summary>&lt;header&gt;</summary>
+                    <ul>
+                      <li>
+                        h1
                         <ul>
-                            <li>meta charset</li>
-                            <li>meta viewport</li>
-                            <li>title</li>
-                            <li>link favicon</li>
-                            <li>link stylesheet</li>
+                          <li>
+                            <span class="attr-name">"MASTER MIND"</span>
+                          </li>
                         </ul>
-                    </li>
-                    <li>body
+                      </li>
+                      <li>
+                        <details>
+                          <summary>&lt;nav&gt;</summary>
+                          <ul>
+                            <li>
+                              ul
+                              <ul>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span>
+                                        a <span class="attr-name">[href=</span
+                                        ><span class="attr-value">"#sobre"</span
+                                        ><span class="attr-name">]</span>
+                                      </span>
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name">"SOBRE"</span>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span>
+                                        a <span class="attr-name">[href=</span
+                                        ><span class="attr-value"
+                                          >"#objetivos"</span
+                                        ><span class="attr-name">]</span>
+                                      </span>
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"OBJETIVOS"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span>
+                                        a <span class="attr-name">[href=</span
+                                        ><span class="attr-value"
+                                          >"#como-jogar"</span
+                                        ><span class="attr-name">]</span>
+                                      </span>
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"COMO JOGAR"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span>
+                                        a <span class="attr-name">[href=</span
+                                        ><span class="attr-value"
+                                          >"#tecnologias"</span
+                                        ><span class="attr-name">]</span>
+                                      </span>
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name">"TECH"</span>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span>
+                                        a <span class="attr-name">[href=</span
+                                        ><span class="attr-value"
+                                          >"#contato"</span
+                                        ><span class="attr-name">]</span>
+                                      </span>
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"CONTATO"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span>
+                                        a <span class="attr-name">[href=</span
+                                        ><span class="attr-value"
+                                          >"DOM.html"</span
+                                        ><span class="attr-name">]</span>
+                                      </span>
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name">"DOM"</span>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>&lt;aside&gt;</summary>
+                    <ul>
+                      <li>
+                        <span
+                          >div <span class="attr-name">[class=</span
+                          ><span class="attr-value">"sidebar-section"</span
+                          ><span class="attr-name">]</span></span
+                        >
                         <ul>
-                            <li>header
+                          <li>
+                            h3
+                            <ul>
+                              <li>
+                                <span class="attr-name">"INTEGRANTES"</span>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            ul
+                            <ul>
+                              <li>
+                                li
                                 <ul>
-                                    <li>h1</li>
-                                    <li>nav
-                                        <ul>
-                                            <li>ul
-                                                <ul>
-                                                    <li>li > a</li>
-                                                    <li>li > a</li>
-                                                    <li>li > a</li>
-                                                    <li>li > a</li>
-                                                    <li>li > a</li>
-                                                    <li>li > a</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Marco Antônio Machado de Arruda"</span
+                                    >
+                                  </li>
                                 </ul>
-                            </li>
-                            <li>aside
+                              </li>
+                              <li>
+                                li
                                 <ul>
-                                    <li>div.sidebar-section
-                                        <ul>
-                                            <li>h3</li>
-                                            <li>ul > li</li>
-                                            <li>ul > li</li>
-                                        </ul>
-                                    </li>
-                                    <li>div.sidebar-section
-                                        <ul>
-                                            <li>h3</li>
-                                            <li>ul > li</li>
-                                            <li>ul > li</li>
-                                            <li>ul > li</li>
-                                        </ul>
-                                    </li>
-                                    <li>div.sidebar-section
-                                        <ul>
-                                            <li>h3</li>
-                                            <li>ul > li > a</li>
-                                            <li>ul > li > a</li>
-                                        </ul>
-                                    </li>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Caio César Rodrigues de Aquino"</span
+                                    >
+                                  </li>
                                 </ul>
-                            </li>
-                            <li>main
-                                <ul>
-                                    <li>section#sobre
-                                        <ul>
-                                            <li>h2</li>
-                                            <li>p</li>
-                                            <li>div.game-preview
-                                                <ul>
-                                                    <li>h3</li>
-                                                    <li>div.mastermind-board
-                                                        <ul>
-                                                            <li>div.secret-row > div.peg.secret *4</li>
-                                                            <li>div.guess-row > div.peg.red/blue/green/yellow + div.feedback > div.feedback-peg *4</li>
-                                                            <li>div.guess-row > div.peg.purple/orange/blue/green + div.feedback > div.feedback-peg *4</li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>section#objetivos
-                                        <ul>
-                                            <li>h2</li>
-                                            <li>ul > li *6</li>
-                                        </ul>
-                                    </li>
-                                    <li>section#como-jogar
-                                        <ul>
-                                            <li>h2</li>
-                                            <li>div.rules
-                                                <ul>
-                                                    <li>div.rule
-                                                        <ul>
-                                                            <li>h4</li>
-                                                            <li>p</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>div.rule
-                                                        <ul>
-                                                            <li>h4</li>
-                                                            <li>div.color-palette > div.color-sample *6</li>
-                                                            <li>p</li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>div.rule
-                                                        <ul>
-                                                            <li>h4</li>
-                                                            <li>p *3</li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li>section#tecnologias
-                                        <ul>
-                                            <li>h2</li>
-                                            <li>div.tech-grid
-                                                <ul>
-                                                    <li>div.tech-item *4</li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>footer
-                                <ul>
-                                    <li>address#contato
-                                        <ul>
-                                            <li>div.footer-section *5</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
+                              </li>
+                            </ul>
+                          </li>
                         </ul>
-                    </li>
-                </ul>
-            </li>
+                      </li>
+                      <li>
+                        <span
+                          >div <span class="attr-name">[class=</span
+                          ><span class="attr-value">"sidebar-section"</span
+                          ><span class="attr-name">]</span></span
+                        >
+                        <ul>
+                          <li>
+                            h3
+                            <ul>
+                              <li>
+                                <span class="attr-name">"FEATURES"</span>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            ul
+                            <ul>
+                              <li>
+                                li
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Interface responsiva"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                li
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Sistema de score"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                li
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Estética 8-bit"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <span
+                          >div <span class="attr-name">[class=</span
+                          ><span class="attr-value">"sidebar-section"</span
+                          ><span class="attr-name">]</span></span
+                        >
+                        <ul>
+                          <li>
+                            h3
+                            <ul>
+                              <li>
+                                <span class="attr-name">"LINKS"</span>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            ul
+                            <ul>
+                              <li>
+                                li
+                                <ul>
+                                  <li>
+                                    <span>
+                                      a
+                                      <span class="attr-name">[href=</span
+                                      ><span class="attr-value"
+                                        >"https://github.com/ligggght/Programacao-para-Web/"</span
+                                      >
+                                      <span class="attr-name">target=</span
+                                      ><span class="attr-value">"_blank"</span
+                                      ><span class="attr-name">]</span>
+                                    </span>
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name">"GitHub"</span>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                li
+                                <ul>
+                                  <li>
+                                    <span>
+                                      a
+                                      <span class="attr-name">[href=</span
+                                      ><span class="attr-value"
+                                        >"https://presencial.moodle.ufsc.br/course/view.php?id=32192"</span
+                                      >
+                                      <span class="attr-name">target=</span
+                                      ><span class="attr-value">"_blank"</span
+                                      ><span class="attr-name">]</span>
+                                    </span>
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >"Programação para Web"</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>&lt;main&gt;</summary>
+                    <ul>
+                      <li>
+                        <details>
+                          <summary>
+                            <span
+                              >section <span class="attr-name">[id=</span
+                              ><span class="attr-value">"sobre"</span>
+                              <span class="attr-name">class=</span
+                              ><span class="attr-value">"content-section"</span
+                              ><span class="attr-name">]</span>
+                            </span>
+                          </summary>
+                          <ul>
+                            <li>
+                              h2
+                              <ul>
+                                <li>
+                                  <span class="attr-name"
+                                    >"SOBRE O PROJETO"</span
+                                  >
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              p
+                              <ul>
+                                <li>
+                                  <span class="attr-name"
+                                    >"O Master Mind é um jogo clássico de lógica
+                                    e dedução onde o jogador deve descobrir uma
+                                    sequência secreta de cores, criada por um
+                                    segundo jogador. Este projeto implementa uma
+                                    versão digital do jogo utilizando
+                                    tecnologias web modernas com estética retrô
+                                    8-bit."</span
+                                  >
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span
+                                >div <span class="attr-name">[class=</span
+                                ><span class="attr-value">"game-preview"</span
+                                ><span class="attr-name">]</span></span
+                              >
+                              <ul>
+                                <li>
+                                  h3
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"PEQUENO PREVIEW DO JOGO"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value"
+                                      >"mastermind-board"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      <span
+                                        >div
+                                        <span class="attr-name">[class=</span
+                                        ><span class="attr-value"
+                                          >secret-row</span
+                                        >
+                                        <span class="attr-name">]</span></span
+                                      >
+                                      <ul>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg secret"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg secret"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg secret"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg secret"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <span
+                                        >div
+                                        <span class="attr-name">[class=</span
+                                        ><span class="attr-value"
+                                          >"guess-row"</span
+                                        >
+                                        <span class="attr-name">]</span></span
+                                      >
+                                      <ul>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg red"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg blue"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg green"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg yellow"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"feedback"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                          <ul>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg correct"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg position"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <span
+                                        >div
+                                        <span class="attr-name">[class=</span
+                                        ><span class="attr-value"
+                                          >"guess-row"</span
+                                        >
+                                        <span class="attr-name">]</span></span
+                                      >
+                                      <ul>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg purple"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg orange"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg blue"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"peg green"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"feedback"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                          <ul>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg correct"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg correct"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg position"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                            <li>
+                                              <span
+                                                >div
+                                                <span class="attr-name"
+                                                  >[class=</span
+                                                ><span class="attr-value"
+                                                  >"feedback-peg"</span
+                                                ><span class="attr-name"
+                                                  >]</span
+                                                ></span
+                                              >
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <span
+                              >section <span class="attr-name">[id=</span
+                              ><span class="attr-value">"objetivos"</span>
+                              <span class="attr-name">class=</span
+                              ><span class="attr-value">"content-section"</span
+                              ><span class="attr-name">]</span>
+                            </span>
+                          </summary>
+                          <ul>
+                            <li>
+                              h2
+                              <ul>
+                                <li>
+                                  <span class="attr-name">"OBJETIVOS"</span>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              ul
+                              <ul>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"Implementar uma versão digital do jogo
+                                        Master Mind"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"Aplicar conceitos de Programação para
+                                        Web com HTML5, CSS3 e JavaScript"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"Utilizar o framework React para criar
+                                        uma interface interativa"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"Desenvolver habilidades em design
+                                        responsivo e UX"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"Implementar lógica de jogo e
+                                        algoritmos de verificação"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  li
+                                  <ul>
+                                    <li>
+                                      <span class="attr-name"
+                                        >"Criar uma estética retrô 8-bit
+                                        autêntica"</span
+                                      >
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <span
+                              >section <span class="attr-name">[id=</span
+                              ><span class="attr-value">"como-jogar"</span>
+                              <span class="attr-name">class=</span
+                              ><span class="attr-value">"content-section"</span
+                              ><span class="attr-name">]</span>
+                            </span>
+                          </summary>
+                          <ul>
+                            <li>
+                              h2
+                              <ul>
+                                <li>
+                                  <span class="attr-name">"COMO JOGAR"</span>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span
+                                >div <span class="attr-name">[class=</span
+                                ><span class="attr-value">"rules"</span
+                                ><span class="attr-name">]</span></span
+                              >
+                              <ul>
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"rule"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"1. OBJETIVO"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"Descubra a sequência secreta de 4
+                                            cores em até 10 tentativas. Use sua
+                                            lógica e dedução para quebrar o
+                                            código!"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"rule"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"2. CORES DISPONÍVEIS"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      <span
+                                        >div
+                                        <span class="attr-name">[class=</span
+                                        ><span class="attr-value"
+                                          >"color-palette"</span
+                                        ><span class="attr-name">]</span></span
+                                      >
+                                      <ul>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"color-sample red"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"color-sample blue"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"color-sample green"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"color-sample yellow"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"color-sample purple"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                        <li>
+                                          <span
+                                            >div
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value"
+                                              >"color-sample orange"</span
+                                            ><span class="attr-name"
+                                              >]</span
+                                            ></span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"rule"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"3. SISTEMA DE FEEDBACK"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span
+                                            >span
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value">
+                                              "feedback-indicator correct"</span
+                                            ><span class="attr-name">]</span>
+                                          </span>
+                                          <ul>
+                                            <li>
+                                              <span class="attr-name"
+                                                >" cor correta na posição
+                                                correta"</span
+                                              >
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span
+                                            >span
+                                            <span class="attr-name"
+                                              >[class=</span
+                                            ><span class="attr-value">
+                                              "feedback-indicator
+                                              position"</span
+                                            ><span class="attr-name">]</span>
+                                          </span>
+                                          <ul>
+                                            <li>
+                                              <span class="attr-name"
+                                                >" cor correta na posição
+                                                errada"</span
+                                              >
+                                            </li>
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li>
+                        <details>
+                          <summary>
+                            <span
+                              >section <span class="attr-name">[id=</span
+                              ><span class="attr-value">"tecnologias"</span>
+                              <span class="attr-name">class=</span
+                              ><span class="attr-value">"content-section"</span
+                              ><span class="attr-name">]</span>
+                            </span>
+                          </summary>
+                          <ul>
+                            <li>
+                              h2
+                              <ul>
+                                <li>
+                                  <span class="attr-name"
+                                    >"stack tecnológico"</span
+                                  >
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span
+                                >div <span class="attr-name">[class=</span
+                                ><span class="attr-value">"tech-grid"</span
+                                ><span class="attr-name">]</span></span
+                              >
+                              <ul>
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"tech-item"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name">"html5"</span>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"estrutura semântica da aplicação
+                                            com elementos modernos</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"tech-item"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name">"css3"</span>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"estilização avançada com grid,
+                                            flexbox e animações 8-bit"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"tech-item"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"javascript"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"lógica do jogo, algoritmos de
+                                            verificação e interatividade"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <span
+                                    >div <span class="attr-name">[class=</span
+                                    ><span class="attr-value">"tech-item"</span
+                                    ><span class="attr-name">]</span></span
+                                  >
+                                  <ul>
+                                    <li>
+                                      h4
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name">"react"</span>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                    <li>
+                                      p
+                                      <ul>
+                                        <li>
+                                          <span class="attr-name"
+                                            >"framework para componentes
+                                            reutilizáveis e estado da
+                                            aplicação"</span
+                                          >
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </details>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+                <li>
+                  <details>
+                    <summary>&lt;footer&gt;</summary>
+                    <ul>
+                      <li>
+                        <span
+                          >address<span class="attr-name">id=</span
+                          ><span class="attr-value">"contato"</span
+                          ><span class="attr-name">]</span>
+                        </span>
+                        <ul>
+                          <li>
+                            <span
+                              >div <span class="attr-name">[class=</span
+                              ><span class="attr-value">"footer-section"</span
+                              ><span class="attr-name">]</span></span
+                            >
+                            <ul>
+                              <li>
+                                h3
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"SOBRE O PROJETO"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                p
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Este projeto foi desenvolvido como parte
+                                      da disciplina de Programação para Web, com
+                                      o objetivo de aplicar conceitos de
+                                      desenvolvimento front-end na criação de um
+                                      jogo interativo com estética retrô."</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <span
+                              >div <span class="attr-name">[class=</span
+                              ><span class="attr-value">"footer-section"</span
+                              ><span class="attr-name">]</span></span
+                            >
+                            <ul>
+                              <li>
+                                h3
+                                <ul>
+                                  <li>
+                                    <span class="attr-name">"OBJETIVOS"</span>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                ul
+                                <ul>
+                                  <li>
+                                    li
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >"Aplicar HTML5 semântico"</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    li
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >"Implementar layouts
+                                          responsivos"</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    li
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >"Desenvolver lógica de jogo"</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    li
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >"Utilizar React components"</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    li
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >"Criar design 8-bit autêntico"</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <span
+                              >div <span class="attr-name">[class=</span
+                              ><span class="attr-value">"footer-section"</span
+                              ><span class="attr-name">]</span></span
+                            >
+                            <ul>
+                              <li>
+                                h3
+                                <ul>
+                                  <li>
+                                    <span class="attr-name">"DISCIPLINA"</span>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                p
+                                <ul>
+                                  <li>
+                                    strong
+                                    <ul>
+                                      <li>
+                                        <span class="attr-name"
+                                          >Programação para Web</span
+                                        >
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                p
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Professor: Wyllian Bezerra da
+                                      Silva"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                p
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"Semestre: 2025.2"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                p
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"UFSC - Ciência da Computação"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <span
+                              >div <span class="attr-name">[class=</span
+                              ><span class="attr-value">"footer-section"</span
+                              ><span class="attr-name">]</span></span
+                            >
+                            <ul>
+                              <li>
+                                h3
+                                <ul>
+                                  <li>
+                                    <span class="attr-name">"CONTATO"</span>
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                p
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"caiocra610@gmail.com"</span
+                                    >
+                                  </li>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"marcoantonio.machadodearruda@gmail.com"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                          <li>
+                            <span
+                              >div <span class="attr-name">[class=</span
+                              ><span class="attr-value">"footer-section"</span
+                              ><span class="attr-name">]</span></span
+                            >
+                            <ul>
+                              <li>
+                                h3
+                                <ul>
+                                  <li>
+                                    <span class="attr-name"
+                                      >"REPOSITORIOS"</span
+                                    >
+                                  </li>
+                                </ul>
+                              </li>
+                              <li>
+                                ul
+                                <ul>
+                                  <li>
+                                    li
+                                    <ul>
+                                      <li>
+                                        <span
+                                          >a <span class="attr-name">href=</span
+                                          ><span class="attr-value"
+                                            >"https://github.com/ligggght/Programacao-para-Web/</span
+                                          >
+                                          <span class="attr-name">target=</span
+                                          ><span class="attr-value"
+                                            >"_blank"</span
+                                          ><span class="attr-name">]</span>
+                                        </span>
+                                        <ul>
+                                          <li>
+                                            <span class="attr-name"
+                                              >"GitHub - Source Code"</span
+                                            >
+                                          </li>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </details>
+                </li>
+              </ul>
+            </details>
+          </li>
         </ul>
+      </details>
     </main>
-</body>
+  </body>
 </html>

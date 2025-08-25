@@ -558,6 +558,12 @@ address {
     text-shadow: 0 0 10px var(--neon-green);
 }
 
+.footer-section p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
 .footer-section ul {
     list-style: none;
 }

@@ -40,9 +40,9 @@ animation-delay: 0.5s;
 }
 
 li:hover {
-background: rgba(0, 255, 65, 0.2);
-box-shadow: 0 0 10px var(--neon-green);
-transform: translateX(2px);
+  background: rgba(0, 255, 65, 0.08);
+  box-shadow: 0 0 4px var(--neon-green);
+  transform: translateX(2px);
 }
 
 /* Summary como nó colapsável */

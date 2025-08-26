@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master Mind - Projeto Web</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>MASTER MIND</h1>
+      <nav>
+        <ul>
+          <li><a href="#sobre">SOBRE</a></li>
+          <li><a href="#objetivos">OBJETIVOS</a></li>
+          <li><a href="#como-jogar">COMO JOGAR</a></li>
+          <li><a href="#tecnologias">TECH</a></li>
+          <li><a href="#contato">CONTATO</a></li>
+          <li><a href="DOM.html">DOM</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <aside>
+      <div class="sidebar-section">
+        <h3>INTEGRANTES</h3>
+        <ul>
+          <li>Marco Antônio Machado de Arruda</li>
+          <li>Caio César Rodrigues de Aquino</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>FEATURES</h3>
+        <ul>
+          <li>Interface responsiva</li>
+          <li>Sistema de score</li>
+          <li>Estética 8-bit</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>LINKS</h3>
+        <ul>
+          <li>
+            <a
+              href="https://github.com/ligggght/Programacao-para-Web/"
+              target="_blank"
+              >GitHub</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://presencial.moodle.ufsc.br/course/view.php?id=32192"
+              target="_blank"
+              >Programação para Web</a
+            >
+          </li>
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <section id="sobre" class="content-section">
+        <h2>SOBRE O PROJETO</h2>
+        <p>
+          O Master Mind é um jogo clássico de lógica e dedução onde o jogador
+          deve descobrir uma sequência secreta de cores, criada por um segundo
+          jogador. Este projeto implementa uma versão digital do jogo utilizando
+          tecnologias web modernas com estética retrô 8-bit.
+        </p>
+
+        <div class="game-preview">
+          <h3>PEQUENO PREVIEW DO JOGO</h3>
+          <div class="mastermind-board">
+            <div class="secret-row">
+              <div class="peg secret"></div>
+              <div class="peg secret"></div>
+              <div class="peg secret"></div>
+              <div class="peg secret"></div>
+            </div>
+            <div class="guess-row">
+              <div class="peg red"></div>
+              <div class="peg blue"></div>
+              <div class="peg green"></div>
+              <div class="peg yellow"></div>
+              <div class="feedback">
+                <div class="feedback-peg correct"></div>
+                <div class="feedback-peg position"></div>
+                <div class="feedback-peg"></div>
+                <div class="feedback-peg"></div>
+              </div>
+            </div>
+            <div class="guess-row">
+              <div class="peg purple"></div>
+              <div class="peg orange"></div>
+              <div class="peg blue"></div>
+              <div class="peg green"></div>
+              <div class="feedback">
+                <div class="feedback-peg correct"></div>
+                <div class="feedback-peg correct"></div>
+                <div class="feedback-peg position"></div>
+                <div class="feedback-peg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="objetivos" class="content-section">
+        <h2>OBJETIVOS</h2>
+        <ul>
+          <li>Implementar uma versão digital do jogo Master Mind</li>
+          <li>
+            Aplicar conceitos de Programação para Web com HTML5, CSS3 e
+            JavaScript
+          </li>
+          <li>
+            Utilizar o framework React para criar uma interface interativa
+          </li>
+          <li>Desenvolver habilidades em design responsivo e UX</li>
+          <li>Implementar lógica de jogo e algoritmos de verificação</li>
+          <li>Criar uma estética retrô 8-bit</li>
+        </ul>
+      </section>
+
+      <section id="como-jogar" class="content-section">
+        <h2>COMO JOGAR</h2>
+        <div class="rules">
+          <div class="rule">
+            <h4>1. OBJETIVO</h4>
+            <p>
+              Descubra a sequência secreta de 4 cores gerada por outro jogador
+              em até 10 tentativas. Use sua lógica e dedução para quebrar o
+              código!
+            </p>
+            <ul>
+              <li>
+                O jogador 1 deve descobrir a sequência secreta de 4 cores
+                chutando sequências de cores, baseando-se em nos feedbacks de
+                suas tentativas anteriores.
+              </li>
+              <li>
+                O jogador 2 cria a sequência secreta e retorna um feedback para
+                o jogador 1 sobre sua tentativa anterior para que ele possa
+                ajustar sua próxima tentativa.
+              </li>
+            </ul>
+          </div>
+          <div class="rule">
+            <h4>2. CORES DISPONÍVEIS</h4>
+            <div class="color-palette">
+              <div class="color-sample red"></div>
+              <div class="color-sample blue"></div>
+              <div class="color-sample green"></div>
+              <div class="color-sample yellow"></div>
+              <div class="color-sample purple"></div>
+              <div class="color-sample orange"></div>
+            </div>
+            <p>6 cores neon disponíveis para criar suas combinações.</p>
+          </div>
+          <div class="rule">
+            <h4>3. SISTEMA DE FEEDBACK</h4>
+            <p>
+              <span class="feedback-indicator correct"></span> cor correta na
+              posição correta
+            </p>
+            <p>
+              <span class="feedback-indicator position"></span> cor correta na
+              posição errada
+            </p>
+            <p>use o feedback para ajustar sua próxima tentativa!</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="tecnologias" class="content-section">
+        <h2>stack tecnológico</h2>
+        <div class="tech-grid">
+          <div class="tech-item">
+            <h4>html5</h4>
+            <p>estrutura semântica da aplicação com elementos modernos</p>
+          </div>
+          <div class="tech-item">
+            <h4>css3</h4>
+            <p>estilização avançada com grid, flexbox e animações 8-bit</p>
+          </div>
+          <div class="tech-item">
+            <h4>javascript</h4>
+            <p>lógica do jogo, algoritmos de verificação e interatividade</p>
+          </div>
+          <div class="tech-item">
+            <h4>react</h4>
+            <p>
+              framework para componentes reutilizáveis e estado da aplicação
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <address id="contato">
+        <div class="footer-section">
+          <h3>SOBRE O PROJETO</h3>
+          <p>
+            Este projeto foi desenvolvido como parte da disciplina de
+            Programação para Web, com o objetivo de aplicar conceitos de
+            desenvolvimento front-end na criação de um jogo interativo com
+            estética retrô.
+          </p>
+        </div>
+
+        <div class="footer-section">
+          <h3>OBJETIVOS</h3>
+          <ul>
+            <li>Aplicar HTML5 semântico</li>
+            <li>Implementar layouts responsivos</li>
+            <li>Desenvolver lógica de jogo</li>
+            <li>Utilizar React components</li>
+            <li>Criar design 8-bit</li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>DISCIPLINA</h3>
+          <p><strong>Programação para Web</strong></p>
+          <p>Professor: Wyllian Bezerra da Silva</p>
+          <p>Semestre: 2025.2</p>
+          <p>UFSC - Ciência da Computação</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>CONTATO</h3>
+          <p>caiocra610@gmail.com</p>
+          <p>marcoantonio.machadodearruda@gmail.com</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>REPOSITORIOS</h3>
+          <ul>
+            <li>
+              <a
+                href="https://github.com/ligggght/Programacao-para-Web/"
+                target="_blank"
+                >GitHub - Source Code</a
+              >
+            </li>
+          </ul>
+        </div>
+      </address>
+    </footer>
+  </body>
+</html>

@@ -11,6 +11,8 @@
   <body>
     <header>
       <h1>MASTER MIND - DOM</h1>
+
+      <button id="toggle-theme" style="position:absolute;top:10px;right:10px;">🌙/☀️</button>
       <nav>
         <ul>
           <li class="nav-li"><a href="index.html">Jogo</a></li>
@@ -1591,5 +1593,11 @@
         </ul>
       </details>
     </main>
+
+    <script>
+      document.getElementById('toggle-theme').onclick = function() {
+        document.body.classList.toggle('light-mode');
+      };
+    </script>
   </body>
 </html>

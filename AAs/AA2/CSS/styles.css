@@ -22,6 +22,22 @@
     --pixel-font: 'Courier New', 'Lucida Console', monospace;
 }
 
+body.light-mode {
+    --primary-color: #f5f5fa;
+    --secondary-color: #e3e3ee;
+    --accent-color: #bdbdf0;
+    --success-color: #00c853;
+    --warning-color: #ffb300;
+    --error-color: #d50000;
+    --background-color: #ffffff;
+    --text-color: #222;
+    --sidebar-bg: #e3e3ee;
+    --footer-bg: #bdbdf0;
+    --neon-green: #00c853;
+    --neon-blue: #2979ff;
+    --neon-pink: #ff4081;
+}
+
 /* Importando fonte pixel-like */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 

@@ -10,6 +10,7 @@
   <body>
     <header>
       <h1>MASTER MIND</h1>
+      <button id="toggle-theme" style="position:absolute;top:10px;right:10px;">🌙/☀️</button>
       <nav>
         <ul>
           <li><a href="#sobre">SOBRE</a></li>
@@ -251,5 +252,10 @@
         </div>
       </address>
     </footer>
+    <script>
+      document.getElementById('toggle-theme').onclick = function() {
+        document.body.classList.toggle('light-mode');
+      };
+    </script>
   </body>
 </html>

@@ -1,10 +1,16 @@
 function listarCasos() {
     let todosOsCasos = []
-    //--- inclua seu algoritmo aqui ---
-
-    
-
-    //--- ---
+    for (let n = 10; n <= 99; n++) {
+        let quadrado = n * n;
+        let strQuad = quadrado.toString();
+        if (strQuad.length === 4) {
+            let parte1 = parseInt(strQuad.substring(0, 2), 10);
+            let parte2 = parseInt(strQuad.substring(2, 4), 10);
+            if (parte1 + parte2 === n) {
+                todosOsCasos.push(n);
+            }
+        }
+    }
     return todosOsCasos
 }
 

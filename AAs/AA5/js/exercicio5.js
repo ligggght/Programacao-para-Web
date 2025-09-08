@@ -1,7 +1,10 @@
 function convertCelciusToFahrenheit(celcius) {
-	//edite esta função
-	//note que você já está recebendo o valor em celcius como parâmetro desta função
-	return "Adicione aqui o resultado da conversão"
+	// Fórmula: (C * 9/5) + 32 = F
+	if (isNaN(celcius)) {
+	return "Por favor, insira um número válido.";
+	}
+	let fahrenheit = (celcius * 9/5) + 32;
+	return fahrenheit.toFixed(2);
 }
 
 

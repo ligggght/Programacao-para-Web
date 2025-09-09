@@ -1,0 +1,46 @@
+.mastermind-board {
+  background: #16213e;
+  padding: 1.5rem;
+  border: 3px solid #00d4ff;
+  box-shadow: 0 0 15px #00d4ff, inset 0 0 15px rgba(0, 212, 255, 0.2);
+  position: relative;
+}
+
+.guess-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 0.5rem;
+}
+
+.peg {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e94560;
+  position: relative;
+  image-rendering: pixelated;
+  box-shadow: 0 0 10px currentColor, inset 0 0 10px rgba(255,255,255,0.2);
+}
+
+.peg.red { background: #ff073a; color: #ff073a; box-shadow: 0 0 15px #ff073a; }
+.peg.blue { background: #00d4ff; color: #00d4ff; box-shadow: 0 0 15px #00d4ff; }
+.peg.green { background: #00ff41; color: #00ff41; box-shadow: 0 0 15px #00ff41; }
+.peg.yellow { background: #ffb000; color: #ffb000; box-shadow: 0 0 15px #ffb000; }
+.peg.purple { background: #ff0080; color: #ff0080; box-shadow: 0 0 15px #ff0080; }
+.peg.orange { background: #ff6b35; color: #ff6b35; box-shadow: 0 0 15px #ff6b35; }
+
+.feedback {
+  margin-left: 1rem;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.feedback-peg {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #e94560;
+  image-rendering: pixelated;
+}
+
+.feedback-peg.correct { background: #00ff41; box-shadow: 0 0 10px #00ff41; }
+.feedback-peg.position { background: #ffb000; box-shadow: 0 0 10px #ffb000; }

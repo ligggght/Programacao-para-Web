@@ -1,76 +1,35 @@
-import React, { useState } from 'react';
 import '../components/Board.css';
+import FeedbackPeg from './FeedbackPeg';
 
-const FEEDBACK_TYPES = [
-  { type: 'correct', label: '✓' },
-  { type: 'correctColorWrongPosition', label: '↔' },
-  { type: 'wrong', label: '✗' },
-  { type: '', label: '?' }
+const FEEDBACK_COLORS = [
+  { type: 'correct', color: 'green', label: '✓' },
+  { type: 'correctColorWrongPosition', color: 'yellow', label: '↔' },
+  { type: 'wrong', color: 'red', label: '✗' },
+  { type: '', color: '', label: '?' }
 ];
 
-function FeedbackSelector({ initialFeedback, onSubmit }) {
-  const [feedback, setFeedback] = useState(initialFeedback);
-
+function FeedbackSelector({ feedback, onChange }) {
   function handleChange(idx, type) {
-    setFeedback(fb => fb.map((t, i) => (i === idx ? type : t)));
+    const newFeedback = feedback.map((t, i) => (i === idx ? type : t));
+    onChange(newFeedback);
   }
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-      {feedback.map((type, idx) => (
-        <FeedbackPeg
-          key={idx}
-          type={type}
-          onChange={newType => handleChange(idx, newType)}
-        />
-      ))}
-      <button onClick={() => onSubmit(feedback)}>Submeter Feedback</button>
-    </div>
-  );
-}
-
-function FeedbackPeg({ type, onChange }) {
-  const [showMenu, setShowMenu] = useState(false);
-
-  return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
-      <div
-        className={`feedback-peg${type ? ' ' + type : ''}`}
-        style={{ cursor: 'pointer' }}
-        onClick={() => setShowMenu(true)}
-      ></div>
-      {showMenu && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '110%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: '#222',
-            border: '2px solid #00d4ff',
-            borderRadius: '8px',
-            padding: '0.5rem',
-            zIndex: 10,
-            display: 'flex',
-            gap: '0.5rem'
-          }}
-        >
-          {FEEDBACK_TYPES.map(fb => (
-            <button
-              key={fb.type}
-              className={`feedback-peg${fb.type ? ' ' + fb.type : ''}`}
-              style={{ width: 20, height: 20, borderRadius: '50%', border: 'none', cursor: 'pointer' }}
-              onClick={() => {
-                onChange(fb.type);
-                setShowMenu(false);
-              }}
-              title={fb.label}
-            >
-              {fb.label}
-            </button>
-          ))}
-        </div>
-      )}
+      {feedback.map((type, idx) => {
+        const colorObj = FEEDBACK_COLORS.find(fb => fb.type === type) || FEEDBACK_COLORS[3];
+        return (
+          <FeedbackPeg
+            key={idx}
+            color={colorObj.color}
+            onChange={newColor => {
+              // Mapeia cor para tipo de feedback
+              const selectedType = FEEDBACK_COLORS.find(fb => fb.color === newColor)?.type || '';
+              handleChange(idx, selectedType);
+            }}
+          />
+        );
+      })}
     </div>
   );
 }

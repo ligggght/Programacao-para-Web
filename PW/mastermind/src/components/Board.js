@@ -2,7 +2,7 @@ import React from 'react';
 import './Board.css';
 import Peg from './Peg';
 
-function Board({ rows, onPegChange }) {
+function Board({ rows, onPegChange, feedbackSelector }) {
   return (
     <div className="mastermind-board">
       {rows.map((row, idx) => (
@@ -21,6 +21,8 @@ function Board({ rows, onPegChange }) {
           </div>
         </div>
       ))}
+      {/* Renderiza o FeedbackSelector dentro do Board, se fornecido */}
+      {feedbackSelector}
     </div>
   );
 }

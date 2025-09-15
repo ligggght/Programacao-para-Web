@@ -7,16 +7,19 @@ function Game() {
     { pegs: [null, null, null, null], feedback: ['', '', '', ''] }
   ]);
   const [awaitingFeedback, setAwaitingFeedback] = useState(false);
+  const [editingFeedback, setEditingFeedback] = useState(['', '', '', '']);
 
   function addGuess(newGuess) {
-    setRows(rows => [
-      // mantém todas as jogadas anteriores, exceto a última (linha de edição)
-      ...rows.slice(0, -1),
-      newGuess,
-      // adiciona uma nova linha vazia para edição
-      { pegs: [null, null, null, null], feedback: ['', '', '', ''] }
-    ]);
-    setAwaitingFeedback(true); // Agora espera o feedback
+    setRows(rows => {
+      const updatedRows = [
+        ...rows.slice(0, -1),
+        newGuess,
+        { pegs: [null, null, null, null], feedback: ['', '', '', ''] }
+      ];
+      return updatedRows;
+    });
+    setEditingFeedback(['', '', '', '']);
+    setAwaitingFeedback(true);
   }
 
   function addFeedback(newFeedback, guessIndex) {
@@ -27,20 +30,18 @@ function Game() {
           : row
       )
     );
-    setAwaitingFeedback(false); // Libera para próxima jogada
-
-    if (rows.length === 13) {
-      console.log('Jogo encerrado! Número máximo de jogadas atingido.');
-    }
+    setAwaitingFeedback(false);
   }
+
+  const editingRow = rows[rows.length - 1];
+  const canSubmit = editingRow.pegs.every(c => c !== null);
 
   return (
     <div>
       <h2>Mastermind</h2>
       <Board
-        rows={rows}
+        rows={awaitingFeedback ? rows.slice(0, -1) : rows}
         onPegChange={(rowIdx, pegIdx, newColor) => {
-          // Só permite alterar pegs se não estiver aguardando feedback e for a linha de edição
           if (!awaitingFeedback && rowIdx === rows.length - 1) {
             setRows(rows =>
               rows.map((row, idx) =>
@@ -54,30 +55,36 @@ function Game() {
             );
           }
         }}
+        feedbackSelector={
+          awaitingFeedback && rows.length > 1 ? (
+            <FeedbackSelector
+              feedback={editingFeedback}
+              onChange={setEditingFeedback}
+            />
+          ) : null
+        }
       />
-      {/* Só mostra botão de submeter jogada se não estiver aguardando feedback */}
       {!awaitingFeedback && (
         <button
           onClick={() => {
-            const editingRow = rows[rows.length - 1];
             addGuess({
               pegs: editingRow.pegs,
               feedback: ['', '', '', ''],
             });
           }}
+          disabled={!canSubmit}
         >
           Submeter Jogada
         </button>
       )}
-
-      {/* Só mostra botão de feedback se estiver aguardando feedback */}
-      {awaitingFeedback && (
-        <FeedbackSelector
-          initialFeedback={rows[rows.length - 2].feedback}
-          onSubmit={newFeedback => {
-            addFeedback(newFeedback, rows.length - 2);
+      {awaitingFeedback && rows.length > 1 && (
+        <button
+          onClick={() => {
+            addFeedback(editingFeedback, rows.length - 2);
           }}
-        />
+        >
+          Submeter Feedback
+        </button>
       )}
     </div>
   );

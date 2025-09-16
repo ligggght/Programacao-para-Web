@@ -5,6 +5,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import Board from './Board';
 import SetupGame from './SetupGame';
 import { EasyMastermindBot } from './Bot';
+import { MAX_TURNS } from '@/consts/consts';
 import type { RowType, FeedbackType, PegColor } from '@/types/global';
 
 export default function Game() {
@@ -110,11 +111,13 @@ export default function Game() {
       setSecretCode(['default', 'default', 'default', 'default']);
       setPasswordGuessed(false);
       setGameSettedUp(false);
+      setIsBotGuessing(false);
+      setIsBotPlaying(false);
     }
   }, [passwordGuessed]);
 
   useEffect(() => {
-    if (rows.length >= 10 && !passwordGuessed) {
+    if (rows.length >= MAX_TURNS && !passwordGuessed) {
       alert('Fim de jogo! Você atingiu o número máximo de tentativas.');
       // Reiniciar o jogo
       setRows([]);
@@ -127,11 +130,12 @@ export default function Game() {
       setSecretCode(['default', 'default', 'default', 'default']);
       setPasswordGuessed(false);
       setGameSettedUp(false);
+      setIsBotGuessing(false);
+      setIsBotPlaying(false);
     }
   }, [rows, passwordGuessed]);
 
   // ------------------------------------------------------------------
-
 
   // Habilitam ou desabilitam os botões de submissão ---------------------
   useEffect(() => {

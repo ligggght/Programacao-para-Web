@@ -1,0 +1,96 @@
+/* globals.css ou outro arquivo importado no projeto */
+@import 'tailwindcss';
+
+@layer utilities {
+  /* Peg base (tamanho, borda, etc) */
+  .peg {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e94560;
+    position: relative;
+    image-rendering: pixelated;
+    box-shadow:
+      0 0 10px currentColor,
+      inset 0 0 10px rgba(255, 255, 255, 0.2);
+    border-radius: 9999px; /* arredondar como Tailwind rounded-full */
+  }
+
+  /* Cores de peg usando CSS puro para sombras e cores custom */
+  .peg-vermelho {
+    background-color: #ff073a;
+    color: #ff073a;
+    box-shadow: 0 0 15px #ff073a;
+  }
+
+  .peg-azul {
+    background-color: #00d4ff;
+    color: #00d4ff;
+    box-shadow: 0 0 15px #00d4ff;
+  }
+
+  .peg-verde {
+    background-color: #00ff41;
+    color: #00ff41;
+    box-shadow: 0 0 15px #00ff41;
+  }
+
+  .peg-amarelo {
+    background-color: #ffee00;
+    color: #ffee00;
+    box-shadow: 0 0 15px #ffee00;
+  }
+
+  .peg-roxo {
+    background-color: #6e154c;
+    color: #6e154c;
+    box-shadow: 0 0 15px #6e154c;
+  }
+
+  .peg-laranja {
+    background-color: #ff6b35;
+    color: #ff6b35;
+    box-shadow: 0 0 15px #ff6b35;
+  }
+
+  .peg-default {
+    background-color: #444;
+    color: #444;
+    box-shadow: 0 0 15px #444;
+  }
+
+  .feedback {
+    margin-left: 1rem;
+    display: flex;
+    gap: 0.3rem;
+  }
+
+  .feedback-peg {
+    width: 15px;
+    height: 15px;
+    border: 2px solid #e94560;
+    image-rendering: pixelated;
+  }
+
+  .feedback-correct {
+    background-color: #00ff41;
+    color: #00ff41;
+    box-shadow: 0 0 10px #00ff41;
+  }
+
+  .feedback-wrong-position {
+    background-color: #ffb000;
+    color: #ffb000;
+    box-shadow: 0 0 10px #ffb000;
+  }
+
+  .feedback-wrong {
+    background-color: #ff073a;
+    color: #ff073a;
+    box-shadow: 0 0 10px #ff073a;
+  }
+
+  .feedback-empty {
+    background-color: transparent;
+    border: 2px solid #ff073a;
+  }
+}

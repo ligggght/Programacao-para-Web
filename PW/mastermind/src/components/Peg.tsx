@@ -1,22 +1,30 @@
+'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import './Peg.css';
+import { PEG_COLORS } from '../consts/consts';
+import type { PegColor } from '../types/global';
 
-const COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+type PegProps = {
+  color: PegColor;
+  enabled: boolean;
+  onChange?: (color: PegColor) => void;
+};
 
-function Peg({ color, onChange }) {
+export default function Peg({ color, onChange, enabled = true }: PegProps) {
   const [showMenu, setShowMenu] = useState(false);
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   // Fecha o menu se clicar fora dele
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
         setShowMenu(false);
       }
     }
+
     if (showMenu) {
       document.addEventListener('mousedown', handleClickOutside);
     }
+
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -25,13 +33,13 @@ function Peg({ color, onChange }) {
   return (
     <div style={{ position: 'relative', display: 'inline-block' }}>
       <div
-        className={`peg${color ? ' ' + color : ''}`}
-        onClick={() => {setShowMenu(true);}}
+        className={`peg peg-${color}`}
+        onClick={enabled ? () => setShowMenu(true) : undefined}
         style={{ cursor: !color ? 'pointer' : 'default' }}
       >
         {!color && ''}
       </div>
-      {showMenu && (
+      {showMenu && onChange && (
         <div
           ref={menuRef}
           style={{
@@ -48,11 +56,17 @@ function Peg({ color, onChange }) {
             gap: '0.5rem',
           }}
         >
-          {COLORS.map(c => (
+          {PEG_COLORS.map((c) => (
             <button
               key={c}
-              className={`peg ${c}`}
-              style={{ width: 30, height: 30, borderRadius: '50%', border: 'none', cursor: 'pointer' }}
+              className={`peg-${c}`}
+              style={{
+                width: 30,
+                height: 30,
+                borderRadius: '50%',
+                border: 'none',
+                cursor: 'pointer',
+              }}
               onClick={() => {
                 onChange(c);
                 setShowMenu(false);
@@ -64,5 +78,3 @@ function Peg({ color, onChange }) {
     </div>
   );
 }
-
-export default Peg;

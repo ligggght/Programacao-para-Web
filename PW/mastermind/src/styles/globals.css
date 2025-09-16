@@ -155,7 +155,6 @@ body {
   image-rendering: crisp-edges;
 }
 
-
 header {
   grid-area: header;
   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -242,7 +241,6 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-
 main {
   grid-area: main;
   padding: 2rem;
@@ -273,7 +271,6 @@ main {
   border-bottom: 2px solid var(--neon-green);
   padding-bottom: 0.5rem;
 }
-
 
 .game-preview {
   background: var(--primary-color);
@@ -443,7 +440,6 @@ main {
   box-shadow: 0 0 10px var(--warning-color);
 }
 
-
 .rules {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -541,7 +537,6 @@ main {
   background: var(--warning-color);
   box-shadow: 0 0 10px var(--warning-color);
 }
-
 
 .tech-grid {
   display: grid;
@@ -769,7 +764,6 @@ address {
   }
 }
 
-
 html {
   scroll-behavior: smooth;
 }
@@ -812,7 +806,6 @@ html {
   }
 }
 
-
 body::before {
   content: '';
   position: fixed;
@@ -832,4 +825,3 @@ body::before {
 .sidebar-section:hover {
   animation: pixelGlow 1s ease-in-out infinite;
 }
-

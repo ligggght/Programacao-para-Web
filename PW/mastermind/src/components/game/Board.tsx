@@ -1,5 +1,6 @@
 import Peg from './Peg';
 import FeedbackSelector from './FeedbackSelector';
+import SetupGame from './SetupGame';
 import type { BoardProps } from '../../types/global';
 
 export default function Board({
@@ -9,16 +10,17 @@ export default function Board({
   editingFeedback,
   setEditingFeedback,
   awaitingFeedback,
+  secretCode,
 }: BoardProps) {
   return (
     <div className="flex flex-col items-center bg-[#16213e] p-6 border-[3px] border-[#00d4ff] relative shadow-[0_0_15px_#00d4ff,inset_0_0_15px_rgba(0,212,255,0.2)] w-full max-w-md">
       {/* Rows jogadas */}
       {rows.map((row, idx) => (
-        <div key={idx} className="grid grid-cols-4 gap-2 mb-4 items-center">
+        <div key={idx} className="grid grid-cols-4 gap-4 items-center">
           {row.pegs.map((color, pegIdx) => (
             <Peg key={pegIdx} color={color} enabled={false} />
           ))}
-          <div className="grid grid-cols-4 gap-1">
+          <div className="grid grid-cols-2 gap-1">
             {row.feedback.map((type, fbIdx) => (
               <div key={fbIdx} className={`feedback-peg feedback-${type}`}></div>
             ))}
@@ -42,15 +44,23 @@ export default function Board({
             />
           ))}
 
-        <div className="grid grid-cols-4 gap-1">
+        <div className="grid grid-cols-4 gap-1 col-start-2 col-span-2 items-center justify-center">
           {awaitingFeedback && (
-            <FeedbackSelector
-              feedback={editingFeedback}
-              onChange={(newFeedback) => setEditingFeedback(newFeedback)}
-            />
+            <>
+              <FeedbackSelector
+                feedback={editingFeedback}
+                onChange={(newFeedback) => setEditingFeedback(newFeedback)}
+              />
+            </>
           )}
         </div>
       </div>
+      {awaitingFeedback && (
+        <>
+          {/* Mostra o código secreto quando estiver aguardando feedback */}
+          <SetupGame secretCode={secretCode} setSecretCode={() => {}} enabled={false} />
+        </>
+      )}
     </div>
   );
 }

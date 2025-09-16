@@ -6,9 +6,11 @@ import Footer from '../components/initialPage/footer';
 import GamePreview from '../components/initialPage/gamePreview';
 import TechGrid from '../components/initialPage/techGrid';
 import HowToPlay from '../components/initialPage/howToPlay';
+import Game from '@/components/game/Game';
 
 export default function Home() {
   const [isLightMode, setIsLightMode] = useState(false);
+  const [toPlay, setToPlay] = useState(false);
 
   const toggleTheme = () => setIsLightMode(!isLightMode);
 
@@ -24,7 +26,15 @@ export default function Home() {
         <section id="sobre" className="content-section">
           <h2>SOBRE O PROJETO</h2>
           <p>O Master Mind é um jogo clássico de lógica e dedução...</p>
-          <GamePreview />
+          {!toPlay && (
+            <>
+              <GamePreview />
+              <button onClick={() => setToPlay(true)} className="border-1">
+                Jogar
+              </button>
+            </>
+          )}
+          {toPlay && <Game />}
         </section>
 
         <section id="objetivos" className="content-section">

@@ -11,6 +11,12 @@ export type BoardProps = {
   editingFeedback: FeedbackType[];
   setEditingFeedback: (feedback: FeedbackType[]) => void;
   awaitingFeedback: boolean;
+  secretCode: PegColor[];
+};
+export type SetupGameProps = {
+  secretCode: PegColor[];
+  setSecretCode: (code: PegColor[]) => void;
+  enabled?: boolean;
 };
 export type FeedbackPegProps = {
   type: FeedbackType;

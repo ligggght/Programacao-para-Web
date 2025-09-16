@@ -110,6 +110,23 @@ export default function Game() {
   }, [passwordGuessed]);
 
   useEffect(() => {
+    if (rows.length >= 10 && !passwordGuessed) {
+      alert('Fim de jogo! Você atingiu o número máximo de tentativas.');
+      // Reiniciar o jogo
+      setRows([]);
+      setGuessingRow({
+        pegs: ['default', 'default', 'default', 'default'],
+        feedback: ['empty', 'empty', 'empty', 'empty'],
+      });
+      setAwaitingFeedback(false);
+      setEditingFeedback(['empty', 'empty', 'empty', 'empty']);
+      setSecretCode(['default', 'default', 'default', 'default']);
+      setPasswordGuessed(false);
+      setGameSettedUp(false);
+    }
+  }, [rows, passwordGuessed]);
+
+  useEffect(() => {
     setCanSubmitGuess(guessingRow.pegs.every((c) => c !== 'default'));
   }, [guessingRow]);
 

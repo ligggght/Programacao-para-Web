@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
-import { PEG_COLORS } from '../consts/consts';
-import type { PegColor } from '../types/global';
+import { PEG_COLORS } from '../../consts/consts';
+import type { PegColor } from '../../types/global';
 
 type PegProps = {
   color: PegColor;

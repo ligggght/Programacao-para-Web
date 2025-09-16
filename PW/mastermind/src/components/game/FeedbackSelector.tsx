@@ -1,5 +1,5 @@
 import FeedbackPeg from './FeedbackPeg';
-import type { FeedbackType } from '../types/global';
+import type { FeedbackType } from '../../types/global';
 
 type FeedbackSelectorProps = {
   feedback: FeedbackType[];

@@ -1,6 +1,6 @@
 'use client';
 import { useState, useRef, useEffect } from 'react';
-import type { FeedbackPegProps, FeedbackType } from '../types/global';
+import type { FeedbackPegProps, FeedbackType } from '../../types/global';
 
 const FEEDBACK_OPTIONS: FeedbackType[] = ['correct', 'wrong-position', 'wrong'];
 

@@ -14,6 +14,7 @@ export default function Game() {
     feedback: ['empty', 'empty', 'empty', 'empty'],
   });
 
+  // Booleano que indica a fase do jogo (adivinhando ou dando feedback)
   const [awaitingFeedback, setAwaitingFeedback] = useState<boolean>(false);
   const [editingFeedback, setEditingFeedback] = useState<FeedbackType[]>([
     'empty',
@@ -48,6 +49,7 @@ export default function Game() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isBotPlaying]);
 
+  // Bot avalia se deve jogar ou dar feedback (se for sua vez)
   useEffect(() => {
     if (!isBotPlaying || passwordGuessed) return;
 
@@ -92,6 +94,8 @@ export default function Game() {
     }
   }
 
+  // Verifica condições de fim de jogo ---------------------
+
   useEffect(() => {
     if (passwordGuessed) {
       alert('Parabéns! Você adivinhou o código secreto!');
@@ -126,6 +130,10 @@ export default function Game() {
     }
   }, [rows, passwordGuessed]);
 
+  // ------------------------------------------------------------------
+
+
+  // Habilitam ou desabilitam os botões de submissão ---------------------
   useEffect(() => {
     setCanSubmitGuess(guessingRow.pegs.every((c) => c !== 'default'));
   }, [guessingRow]);
@@ -137,6 +145,8 @@ export default function Game() {
   useEffect(() => {
     setCanSubmitGameSetup(secretCode.every((c) => c !== 'default'));
   }, [secretCode]);
+
+  // --------------------------------------------------------------------
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#16213e] p-6">

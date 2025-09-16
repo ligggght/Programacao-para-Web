@@ -1,9 +1,10 @@
 // TODO: integração com o front dos envios passados
 
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Board from './Board';
 import SetupGame from './SetupGame';
+import { EasyMastermindBot } from './Bot';
 import type { RowType, FeedbackType, PegColor } from '@/types/global';
 
 export default function Game() {
@@ -34,6 +35,35 @@ export default function Game() {
   const [passwordGuessed, setPasswordGuessed] = useState(false);
 
   const [gameSettedUp, setGameSettedUp] = useState(false);
+
+  const [isBotPlaying, setIsBotPlaying] = useState(false);
+  const [isBotGuessing, setIsBotGuessing] = useState(false);
+  const bot = useMemo(() => new EasyMastermindBot(isBotGuessing), [isBotGuessing]);
+
+  // Bot começa jogando e precisa gerar o código secreto
+  useEffect(() => {
+    if (isBotPlaying && !isBotGuessing) {
+      setSecretCode(bot.generateRandomPassword());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isBotPlaying]);
+
+  useEffect(() => {
+    if (!isBotPlaying || passwordGuessed) return;
+
+    if (!isBotGuessing && awaitingFeedback) {
+      setTimeout(() => {
+        addFeedback(bot.giveFeedback(rows[rows.length - 1].pegs), rows.length - 1);
+      }, 500);
+    }
+
+    if (isBotGuessing && !awaitingFeedback) {
+      setTimeout(() => {
+        addGuess({ pegs: bot.makeGuess(rows), feedback: ['empty', 'empty', 'empty', 'empty'] });
+      }, 500);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rows, isBotPlaying]);
 
   function addGuess(newGuess: RowType) {
     setRows((rows) => {
@@ -94,7 +124,35 @@ export default function Game() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#16213e] p-6">
       <h2 className="text-white text-2xl font-bold">Mastermind</h2>
-      {!gameSettedUp && <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} />}
+      {!gameSettedUp && (
+        <>
+          <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} />
+          {/* TODO: mover para SetupGame os botoes abaixo */}
+          <button
+            onClick={() => {
+              setIsBotPlaying(true);
+              setIsBotGuessing(false);
+              setGameSettedUp(true);
+            }}
+            className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
+          >
+            Bot Gera o Código Secreto
+          </button>
+          {/* apenas aparece se a senha secreta já estar configurada */}
+          {canSubmitGameSetup && (
+            <button
+              onClick={() => {
+                setIsBotPlaying(true);
+                setIsBotGuessing(true);
+                setGameSettedUp(true);
+              }}
+              className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
+            >
+              Bot Adivinha o Código Secreto
+            </button>
+          )}
+        </>
+      )}
       {gameSettedUp && (
         <Board
           rows={rows}

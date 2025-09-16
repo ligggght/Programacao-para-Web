@@ -17,7 +17,7 @@ export default function Home() {
   }, [isLightMode]);
 
   return (
-    <div>
+    <>
       <Header toggleTheme={toggleTheme} />
       <Sidebar />
       <main>
@@ -50,6 +50,6 @@ export default function Home() {
         </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

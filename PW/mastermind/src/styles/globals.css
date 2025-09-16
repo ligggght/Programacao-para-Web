@@ -96,7 +96,6 @@
     border: 2px solid #ff073a;
   }
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -156,7 +155,7 @@ body {
   image-rendering: crisp-edges;
 }
 
-/* Header */
+
 header {
   grid-area: header;
   background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
@@ -243,7 +242,7 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* Main Content */
+
 main {
   grid-area: main;
   padding: 2rem;
@@ -275,7 +274,7 @@ main {
   padding-bottom: 0.5rem;
 }
 
-/* Game Preview - Estética 8-bit */
+
 .game-preview {
   background: var(--primary-color);
   padding: 2rem;
@@ -336,8 +335,6 @@ main {
   gap: 0.5rem;
 }
 
-/* Peças estilo 8-bit */
-/* Peg significa algo como "pino", são as peças do jogo */
 .peg {
   width: 40px;
   height: 40px;
@@ -446,7 +443,7 @@ main {
   box-shadow: 0 0 10px var(--warning-color);
 }
 
-/* Rules Section */
+
 .rules {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -545,7 +542,7 @@ main {
   box-shadow: 0 0 10px var(--warning-color);
 }
 
-/* Tech Grid */
+
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -590,7 +587,6 @@ main {
   text-shadow: 0 0 10px var(--neon-green);
 }
 
-/* Sidebar */
 aside {
   grid-area: aside;
   background: var(--sidebar-bg);
@@ -648,7 +644,6 @@ aside {
   text-shadow: 0 0 10px var(--neon-green);
 }
 
-/* Footer */
 footer {
   grid-area: footer;
   background: var(--footer-bg);
@@ -707,7 +702,6 @@ address {
   text-shadow: 0 0 10px var(--neon-green);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   body {
     grid-template-areas:
@@ -775,12 +769,11 @@ address {
   }
 }
 
-/* Scroll suave */
+
 html {
   scroll-behavior: smooth;
 }
 
-/* Animações 8-bit */
 @keyframes pixelGlow {
   0% {
     box-shadow: 0 0 5px currentColor;
@@ -819,7 +812,7 @@ html {
   }
 }
 
-/* Efeito de scanlines para dar sensação retro */
+
 body::before {
   content: '';
   position: fixed;
@@ -834,9 +827,9 @@ body::before {
   opacity: 0.3;
 }
 
-/* Hover effects */
 .rule:hover,
 .tech-item:hover,
 .sidebar-section:hover {
   animation: pixelGlow 1s ease-in-out infinite;
 }
+

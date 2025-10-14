@@ -1,4 +1,4 @@
-function codigoModificado() {
+function codigoModificadoE9() {
   let i = 0;
   let max = 10;
 
@@ -13,5 +13,7 @@ function codigoModificado() {
 }
 
 function executarEx9() {
-  codigoModificado();
+  console.clear();
+
+  codigoModificadoE9();
 }

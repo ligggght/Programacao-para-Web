@@ -10,6 +10,8 @@ const olaETchau = () => {
 };
 
 function executarEx5() {
+  console.clear();
+
   console.log("Ambos estão corretos: \n");
   olaETchau();
   olaTchau();

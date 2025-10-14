@@ -1,4 +1,4 @@
-function codigoDado() {
+function codigoDadoE6() {
   const resolverEm1s = new Promise((resolve) => setTimeout(resolve, 1000));
 
   for (let i = 0; i < 10; i++) {
@@ -7,8 +7,10 @@ function codigoDado() {
 }
 
 function executarEx6() {
+  console.clear();
+
   console.log(
-    "Teóricamente deveria imprimmir 'oi' 10 vezes seguidas instantaneamente, pois o loop de then's termina e prepara todos os prints de 'oi' antes do timeout, inclusive é observado ao rodar no ambiente Node. Contudo, na prática, possíveis otimizações do browser fazem com que apenas um 'oi' seja impresso. Como pode observar:\n"
+    "Deve imprimir 'oi' 10 vezes seguidas rapidamente, pois o loop de then's termina e prepara todos os prints de 'oi' antes do timeout acontecer.\n"
   );
-  setTimeout(codigoDado, 1000);
+  setTimeout(codigoDadoE6, 1000);
 }

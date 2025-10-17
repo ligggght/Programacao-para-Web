@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>WebSocket UI</title>
+    <link rel="stylesheet" href="ws.css" />
+</head>
+<body>
+    <div class="container">
+        <header><h1>WebSocket UI</h1></header>
+
+        <div class="server-status">
+            <div class="status-indicator">
+                <span id="serverDot" class="status-dot status-offline"></span>
+                <div id="serverText">Servidor: desconhecido</div>
+            </div>
+            <div class="server-controls">
+                <button id="connectBtn">Conectar WS</button>
+                <button id="disconnectBtn">Desconectar WS</button>
+            </div>
+        </div>
+
+        <div class="messages-container">
+            <div id="messageList" class="message-list no-messages">Nenhuma mensagem</div>
+        </div>
+
+        <div class="debug-info" id="debugInfo"></div>
+        <div class="debug-toggle" id="debugToggle">Exibir Informações de Depuração</div>
+    </div>
+
+    <script src="ws_partial.js"></script>
+</body>
+</html>

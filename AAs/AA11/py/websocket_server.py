@@ -68,7 +68,7 @@ async def broadcast_message(message_data):
         websockets_tasks = [websocket.send(message_json) for websocket in connected_clients]
         await asyncio.gather(*websockets_tasks)
 
-def handle_tcp_client(connection, address):
+def handle_tcp_client(connection, address, loop):
     """Gerencia conexões TCP."""
     client_ip = address[0]
     logger.info(f"Cliente TCP conectado: {client_ip}")
@@ -88,7 +88,7 @@ def handle_tcp_client(connection, address):
 
             connection.sendall(f'Mensagem recebida: {message}\n'.encode('utf-8'))
 
-            asyncio.run_coroutine_threadsafe(broadcast_message(message_data), asyncio.get_event_loop())
+            asyncio.run_coroutine_threadsafe(broadcast_message(message_data), loop)
 
     except Exception as e:
         logger.error(f"Erro na conexão TCP com {client_ip}: {e}")
@@ -96,7 +96,7 @@ def handle_tcp_client(connection, address):
         connection.close()
         logger.info(f"Cliente TCP desconectado: {client_ip}")
 
-def start_tcp_server():
+def start_tcp_server(loop):
     """Inicia o servidor TCP."""
     tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     tcp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -108,13 +108,13 @@ def start_tcp_server():
 
         while True:
             conn, addr = tcp_socket.accept()
-            threading.Thread(target=handle_tcp_client, args=(conn, addr)).start()
+            threading.Thread(target=handle_tcp_client, args=(conn, addr, loop)).start()
     except Exception as e:
         logger.error(f"Erro no servidor TCP: {e}")
     finally:
         tcp_socket.close()
 
-def start_udp_server():
+def start_udp_server(loop):
     """Inicia o servidor UDP."""
     udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     udp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -142,7 +142,7 @@ def start_udp_server():
                 udp_socket.sendto(f'Mensagem recebida: {message}\n'.encode('utf-8'), addr)
 
                 # Envia a mensagem para os clientes WebSocket
-                asyncio.run_coroutine_threadsafe(broadcast_message(message_data), asyncio.get_event_loop())
+                asyncio.run_coroutine_threadsafe(broadcast_message(message_data), loop)
 
     except Exception as e:
         logger.error(f"Erro no servidor UDP: {e}")
@@ -150,10 +150,13 @@ def start_udp_server():
         udp_socket.close()
 
 async def main():
-    tcp_thread = threading.Thread(target=start_tcp_server, daemon=True)
+    # Cria o loop principal
+    loop = asyncio.get_running_loop()
+
+    tcp_thread = threading.Thread(target=start_tcp_server, args=(loop,), daemon=True)
     tcp_thread.start()
 
-    udp_thread = threading.Thread(target=start_udp_server, daemon=True)
+    udp_thread = threading.Thread(target=start_udp_server, args=(loop,), daemon=True)
     udp_thread.start()
 
     async with websockets.serve(ws_handler, '0.0.0.0', WS_PORT):

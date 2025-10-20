@@ -101,9 +101,9 @@ def start_tcp_server():
     tcp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
     try:
-        tcp_socket.bind(('0.0.0.0', TPC_PORT))
+        tcp_socket.bind(('0.0.0.0', TCP_PORT))
         tcp_socket.listen(5)
-        logger.info(f"Servidor TCP iniciado na porta {TPC_PORT}")
+        logger.info(f"Servidor TCP iniciado na porta {TCP_PORT}")
 
         while True:
             conn, addr = tcp_socket.accept()

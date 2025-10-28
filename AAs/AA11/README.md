@@ -108,6 +108,8 @@ UDP: udp_client.py
 
 Ambos permitem enviar mensagens de teste para o servidor e verificar se elas aparecem na interface web via WebSocket.
 
+Para isso, quando perguntar qual endereço usar, estando na VPN ou na rede da UFSC, insira: http://ine5646.marco.antonio.machado.arruda.vms.ufsc.br/AA/aa11/ 
+
 ### Fluxo de Mensagens
 
 Um cliente envia mensagem via TCP ou UDP.

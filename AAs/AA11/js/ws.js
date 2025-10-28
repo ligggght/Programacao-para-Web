@@ -190,6 +190,13 @@ function addMessage(message) {
   messagesStats[protocol]++;
   messagesStats.total++;
 
+  // Debug
+  logDebug(
+    `Nova mensagem recebida: Protocolo=${protocol.toUpperCase()}, IP=${
+      message.ip
+    }, Conteúdo=${message.content}`
+  );
+
   // Atualiza os contadores na UI
   tcpCount.textContent = messagesStats.tcp;
   udpCount.textContent = messagesStats.udp;
@@ -262,6 +269,8 @@ clearBtn.addEventListener("click", clearMessages);
 tabs.forEach((tab) => {
   tab.addEventListener("click", () => {
     filterMessages(tab.dataset.filter);
+    tabs.forEach((t) => t.classList.remove("active"));
+    tab.classList.add("active");
   });
 });
 

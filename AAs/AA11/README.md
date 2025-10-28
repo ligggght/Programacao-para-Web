@@ -110,6 +110,10 @@ Ambos permitem enviar mensagens de teste para o servidor e verificar se elas apa
 
 Para isso, quando perguntar qual endereço usar, estando na VPN ou na rede da UFSC, insira: http://ine5646.marco.antonio.machado.arruda.vms.ufsc.br/AA/aa11/ 
 
+De forma alternativa, mensagens também podem ser mandadas por outros protocolos como (IPV4 do servidor):
+TCP -> telnet 150.162.244.75 8080 
+UDP -> echo "mensagem de teste" | nc -u 150.162.244.75 8081
+
 ### Fluxo de Mensagens
 
 Um cliente envia mensagem via TCP ou UDP.

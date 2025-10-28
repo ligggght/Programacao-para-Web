@@ -29,7 +29,8 @@ let socket = null;
 let currentFilter = "all";
 
 // URL para o gerenciador do servidor
-const managerUrl = "server_manager.py";
+// const managerUrl = "py/server_manager.py";
+const managerUrl = "cgi-bin/server_manager.py"; // para testar localmente com um servidor web
 
 // Define o websocket (ws)
 const websocketUrl = `ws://${window.location.hostname}:8082`; // URL para o WebSocket
@@ -222,7 +223,7 @@ function addMessage(message) {
   // Remove o elemento "Nenhuma mensagem" se existir uma pelo menos uma mensagem
   const noMessagesEl = messageList.querySelector(".no-messages");
   if (noMessagesEl) {
-    messagesList.removeChild(noMessagesEl);
+    messageList.removeChild(noMessagesEl);
   }
 
   // Adiciona a mensagem à lista

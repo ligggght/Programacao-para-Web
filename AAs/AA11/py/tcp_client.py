@@ -13,7 +13,7 @@ import urllib.parse
 
 BUFFER_SIZE = 1024
 timeout = 2 * 60   # [segundos]
-url = 'ine5646.marco.antonio.machado.arruda.vms.ufsc.br/AA/aa11'
+url = '150.162.244.75'
 p = 8080
 
 

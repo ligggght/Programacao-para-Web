@@ -163,6 +163,9 @@ async def main():
         logger.info(f"Servidor WebSocket iniciado na porta {WS_PORT}")
         await asyncio.Future()  # Mantém o servidor rodando indefinidamente
 
+    while True:
+        continue
+
 def signal_handler(sig, frame):
     logger.info(f'Servidor WebSocket escutando na porta {WS_PORT}.')
     sys.exit(0)

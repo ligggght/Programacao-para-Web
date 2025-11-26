@@ -215,7 +215,7 @@ nav ul {
   gap: 1rem;
 }
 
-nav a {
+nav a, button {
   color: var(--neon-blue);
   text-decoration: none;
   font-weight: bold;
@@ -232,7 +232,8 @@ nav a {
     inset 0 0 10px rgba(0, 212, 255, 0.1);
 }
 
-nav a:hover {
+nav a:hover,
+button:hover {
   background: var(--neon-blue);
   color: var(--primary-color);
   box-shadow:

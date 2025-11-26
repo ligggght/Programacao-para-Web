@@ -30,7 +30,10 @@ export default function RootLayout({
         <title>Master Mind - Projeto Web</title>
         <link rel="icon" href="favicon.ico" type="image/x-icon" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }

@@ -84,12 +84,12 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
     >
       <div
         style={{
-          background: '#16213e',
+          background: 'var(--primary-color)',
           padding: '2rem',
           borderRadius: '10px',
           width: '350px',
-          color: '#e0e0e0',
-          border: '2px solid #00d4ff',
+          color: 'var(--text-color)',
+          border: '2px solid var(--accent-color)',
           fontFamily: "'Press Start 2P', monospace",
         }}
       >
@@ -108,9 +108,9 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
             required
             style={{
               padding: '0.5rem',
-              background: '#0f3460',
-              border: '2px solid #00d4ff',
-              color: '#00d4ff',
+              background: 'var(--primary-color)',
+              border: '2px solid var(--accent-color)',
+              color: 'var(--text-color)',
             }}
           />
 
@@ -122,9 +122,9 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
             onChange={(e) => setPassword(e.target.value)}
             style={{
               padding: '0.5rem',
-              background: '#0f3460',
-              border: '2px solid #00d4ff',
-              color: '#00d4ff',
+              background: 'var(--primary-color)',
+              border: '2px solid var(--accent-color)',
+              color: 'var(--text-color)',
             }}
           />
 
@@ -134,9 +134,9 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
             onChange={(e) => setAvatarStyle(e.target.value)}
             style={{
               padding: '0.5rem',
-              background: '#0f3460',
-              border: '2px solid #00d4ff',
-              color: '#00d4ff',
+              background: 'var(--primary-color)',
+              border: '2px solid var(--accent-color)',
+              color: 'var(--text-color)',
             }}
           >
             {avatarStyles.map((style) => (
@@ -154,9 +154,9 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
             onChange={(e) => setAvatarSeed(e.target.value)}
             style={{
               padding: '0.5rem',
-              background: '#0f3460',
-              border: '2px solid #00d4ff',
-              color: '#00d4ff',
+              background: 'var(--primary-color)',
+              border: '2px solid var(--accent-color)',
+              color: 'var(--text-color)',
             }}
           />
 
@@ -167,7 +167,7 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
               alt="Avatar"
               width={100}
               height={100}
-              className="rounded-full border-2 border-[#00d4ff]"
+              className="rounded-full border-2 border-[var(--accent-color)]"
             />
           </div>
 
@@ -175,8 +175,8 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
             type="submit"
             style={{
               padding: '0.7rem',
-              background: '#00d4ff',
-              color: '#0f3460',
+              background: 'var(--accent-color)',
+              color: 'var(--primary-color)',
               border: 'none',
               cursor: 'pointer',
             }}
@@ -191,8 +191,8 @@ export default function ChangeDataModal({ onClose }: { onClose: () => void }) {
             marginTop: '1rem',
             width: '100%',
             padding: '0.5rem',
-            background: '#ff4d4d',
-            color: '#fff',
+            background: 'var(--secondary-color)',
+            color: 'var(--text-color)',
             cursor: 'pointer',
             border: 'none',
           }}

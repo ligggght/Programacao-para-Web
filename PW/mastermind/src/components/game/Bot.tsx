@@ -11,6 +11,7 @@ export class EasyMastermindBot {
     // Inicialização do bot
     this.isGuessing = isGuessing;
   }
+  guaranteedIncorrectGuess: Set<PegColor> = new Set();
 
   makeGuess(previousGuesses: RowType[]): PegColor[] {
     if (previousGuesses.length === 0) {
@@ -22,6 +23,11 @@ export class EasyMastermindBot {
       (acc, fb) => acc + (fb === 'correct' ? 1 : 0),
       0,
     );
+
+    if (correctNumber === 0) {
+      // Nenhum correto, marcar as cores como incorretas
+      this.guaranteedIncorrectGuess = this.guaranteedIncorrectGuess.union(new Set(lastGuess.pegs));
+    }
 
     // um switch case com casos iguais para que no futuro possamos criar novas estratégias
     switch (correctNumber) {
@@ -47,6 +53,10 @@ export class EasyMastermindBot {
     const guess: PegColor[] = [];
     while (guess.length < 4) {
       const randomColor = availableColors[Math.floor(Math.random() * availableColors.length)];
+      // Evita chutar cores que já sabe que estão erradas
+      if (this.guaranteedIncorrectGuess.has(randomColor)) {
+        continue;
+      }
       guess.push(randomColor);
     }
     return guess;
@@ -61,6 +71,10 @@ export class EasyMastermindBot {
     const availableColors = PEG_COLORS;
     while (newGuess.length < 4) {
       const randomColor = availableColors[Math.floor(Math.random() * availableColors.length)];
+      // Evita chutar cores que já sabe que estão erradas
+      if (this.guaranteedIncorrectGuess.has(randomColor)) {
+        continue;
+      }
       newGuess.push(randomColor);
     }
     return newGuess;

@@ -58,12 +58,14 @@ export default function Game() {
     if (!isBotGuessing && awaitingFeedback) {
       setTimeout(() => {
         addFeedback(bot.giveFeedback(rows[rows.length - 1].pegs), rows.length - 1);
+        setAwaitingFeedback(false);
       }, 500);
     }
 
-    if (isBotGuessing && !awaitingFeedback) {
+    if (isBotGuessing && awaitingFeedback) {
       setTimeout(() => {
         addGuess({ pegs: bot.makeGuess(rows), feedback: ['empty', 'empty', 'empty', 'empty'] });
+        setAwaitingFeedback(false);
       }, 500);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,7 +92,7 @@ export default function Game() {
       ...rows.slice(guessIndex + 1),
     ]);
     setEditingFeedback(['empty', 'empty', 'empty', 'empty']);
-    setAwaitingFeedback(false);
+    setAwaitingFeedback(true);
     if (newFeedback.every((fb) => fb === 'correct')) {
       setPasswordGuessed(true);
     }
@@ -178,6 +180,7 @@ export default function Game() {
                     setIsBotPlaying(true);
                     setIsBotGuessing(true);
                     setGameSettedUp(true);
+                    setAwaitingFeedback(true);
                   }}
                   className="px-4 py-2 font-semibold rounded"
                 >
@@ -201,16 +204,7 @@ export default function Game() {
         />
       )}
 
-      {!gameSettedUp && (
-        <button
-          onClick={() => setGameSettedUp(true)}
-          disabled={!canSubmitGameSetup}
-          className="px-4 py-2 font-semibold rounded"
-        >
-          Iniciar Jogo
-        </button>
-      )}
-      {gameSettedUp && !awaitingFeedback && (
+      {gameSettedUp && !awaitingFeedback && !isBotGuessing && (
         <button
           onClick={() => {
             addGuess({
@@ -225,7 +219,7 @@ export default function Game() {
         </button>
       )}
 
-      {gameSettedUp && awaitingFeedback && (
+      {gameSettedUp && !awaitingFeedback && isBotGuessing && (
         <button
           onClick={() => {
             addFeedback(editingFeedback, rows.length - 1);

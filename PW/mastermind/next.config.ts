@@ -2,8 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  basePath: '/PW', // o caminho do seu projeto no servidor
-  assetPrefix: '/PW', // prefixo para assets (_next/*)
+  assetPrefix: '/PW',
   images: {
     remotePatterns: [
       {
@@ -12,6 +11,9 @@ const nextConfig: NextConfig = {
         pathname: '/7.x/**',
       },
     ],
+    // necessario por conta do uso do dicebear
+    // caso contrario o next tenta otimizar como uma imagem local
+    unoptimized: true,
   },
 };
 

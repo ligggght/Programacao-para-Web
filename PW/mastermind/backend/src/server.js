@@ -8,7 +8,15 @@ import userRoutes from './routes/userRoutes.js';
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(
+  cors(
+    process.env.IS_DEV === 'false' && {
+      origin: 'https://ine5646.marco.antonio.machado.arruda.vms.ufsc.br',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    },
+  ),
+);
 app.use(express.json());
 
 // Rotas da API

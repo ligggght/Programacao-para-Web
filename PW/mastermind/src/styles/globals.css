@@ -2,6 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 /* globals.css ou outro arquivo importado no projeto */
 @import 'tailwindcss';
+@import 'tailwindcss/preflight';
+@tailwind utilities;
 
 @layer utilities {
   /* Peg base (tamanho, borda, etc) */
@@ -215,7 +217,8 @@ nav ul {
   gap: 1rem;
 }
 
-nav a, button {
+nav a,
+button {
   color: var(--neon-blue);
   text-decoration: none;
   font-weight: bold;

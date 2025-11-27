@@ -125,7 +125,7 @@ export default function MultiplayerGame() {
   if (phase === 'menu') {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
-        <h2 className="text-3xl font-bold">Modo Multiplayer</h2>
+        <h2 className="text-3xl font-bold text-success">Modo Multiplayer</h2>
 
         <div className="flex flex-col gap-4 w-full max-w-md">
           <button onClick={() => setPhase('creating')} className="px-6 py-3 font-bold rounded">
@@ -206,7 +206,7 @@ export default function MultiplayerGame() {
         <h2 className="text-3xl font-bold">Aguardando Oponente...</h2>
         <div className="text-xl">
           <p>
-            ID da Partida: <span className="font-bold">{gameId}</span>
+            ID da Partida: <span className="font-bold text-success">{gameId}</span>
           </p>
           <p className="text-sm mt-2">Compartilhe este ID com seu oponente!</p>
         </div>

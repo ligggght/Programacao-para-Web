@@ -11,12 +11,17 @@ export type BoardProps = {
   editingFeedback: FeedbackType[];
   setEditingFeedback: (feedback: FeedbackType[]) => void;
   awaitingFeedback: boolean;
+  isPlayerGuessing: boolean;
   secretCode: PegColor[];
 };
 export type SetupGameProps = {
   secretCode: PegColor[];
   setSecretCode: (code: PegColor[]) => void;
-  enabled?: boolean;
+  setIsBotPlaying: (isBot: boolean) => void;
+  setIsBotGuessing: (isBotGuessing: boolean) => void;
+  setGameSettedUp: (isSettedUp: boolean) => void;
+  canSubmitGameSetup: boolean;
+  gameSettedUp: boolean;
 };
 export type FeedbackPegProps = {
   type: FeedbackType;

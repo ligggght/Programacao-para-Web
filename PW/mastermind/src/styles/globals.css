@@ -5,98 +5,96 @@
 @import 'tailwindcss/preflight';
 @tailwind utilities;
 
-@layer utilities {
-  /* Peg base (tamanho, borda, etc) */
-  .peg {
-    width: 40px;
-    height: 40px;
-    border: 3px solid #e94560;
-    position: relative;
-    image-rendering: pixelated;
-    box-shadow:
-      0 0 10px currentColor,
-      inset 0 0 10px rgba(255, 255, 255, 0.2);
-    border-radius: 9999px; /* arredondar como Tailwind rounded-full */
-  }
+/* Peg base (tamanho, borda, etc) */
+.peg {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e94560;
+  position: relative;
+  image-rendering: pixelated;
+  box-shadow:
+    0 0 10px currentColor,
+    inset 0 0 10px rgba(255, 255, 255, 0.2);
+  border-radius: 9999px; /* arredondar como Tailwind rounded-full */
+}
 
-  /* Cores de peg usando CSS puro para sombras e cores custom */
-  .peg-vermelho {
-    background-color: #ff073a;
-    color: #ff073a;
-    box-shadow: 0 0 15px #ff073a;
-  }
+/* Cores de peg usando CSS puro para sombras e cores custom */
+.peg-vermelho {
+  background-color: #ff073a;
+  color: #ff073a;
+  box-shadow: 0 0 15px #ff073a;
+}
 
-  .peg-azul {
-    background-color: #00d4ff;
-    color: #00d4ff;
-    box-shadow: 0 0 15px #00d4ff;
-  }
+.peg-azul {
+  background-color: #00d4ff;
+  color: #00d4ff;
+  box-shadow: 0 0 15px #00d4ff;
+}
 
-  .peg-verde {
-    background-color: #00ff41;
-    color: #00ff41;
-    box-shadow: 0 0 15px #00ff41;
-  }
+.peg-verde {
+  background-color: #00ff41;
+  color: #00ff41;
+  box-shadow: 0 0 15px #00ff41;
+}
 
-  .peg-amarelo {
-    background-color: #ffee00;
-    color: #ffee00;
-    box-shadow: 0 0 15px #ffee00;
-  }
+.peg-amarelo {
+  background-color: #ffee00;
+  color: #ffee00;
+  box-shadow: 0 0 15px #ffee00;
+}
 
-  .peg-roxo {
-    background-color: #6e154c;
-    color: #6e154c;
-    box-shadow: 0 0 15px #6e154c;
-  }
+.peg-roxo {
+  background-color: #6e154c;
+  color: #6e154c;
+  box-shadow: 0 0 15px #6e154c;
+}
 
-  .peg-laranja {
-    background-color: #ff6b35;
-    color: #ff6b35;
-    box-shadow: 0 0 15px #ff6b35;
-  }
+.peg-laranja {
+  background-color: #ff6b35;
+  color: #ff6b35;
+  box-shadow: 0 0 15px #ff6b35;
+}
 
-  .peg-default {
-    background-color: #444;
-    color: #444;
-    box-shadow: 0 0 15px #444;
-  }
+.peg-default {
+  background-color: #444;
+  color: #444;
+  box-shadow: 0 0 15px #444;
+}
 
-  .feedback {
-    margin-left: 1rem;
-    display: flex;
-    gap: 0.3rem;
-  }
+.feedback {
+  margin-left: 1rem;
+  display: flex;
+  gap: 0.3rem;
+}
 
-  .feedback-peg {
-    width: 15px;
-    height: 15px;
-    border: 2px solid #e94560;
-    image-rendering: pixelated;
-  }
+.feedback-peg {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #e94560;
+  image-rendering: pixelated;
+}
 
-  .feedback-correct {
-    background-color: #00ff41;
-    color: #00ff41;
-    box-shadow: 0 0 10px #00ff41;
-  }
+.feedback-correct {
+  background-color: #00ff41;
+  color: #00ff41;
+  box-shadow: 0 0 10px #00ff41;
+}
 
-  .feedback-wrong-position {
-    background-color: #ffb000;
-    color: #ffb000;
-    box-shadow: 0 0 10px #ffb000;
-  }
+.feedback-wrong-position {
+  background-color: #ffb000;
+  color: #ffb000;
+  box-shadow: 0 0 10px #ffb000;
+}
 
-  .feedback-wrong {
-    background-color: #ff073a;
-    color: #ff073a;
-    box-shadow: 0 0 10px #ff073a;
-  }
+.feedback-wrong {
+  background-color: #ff073a;
+  color: #ff073a;
+  box-shadow: 0 0 10px #ff073a;
+}
 
-  .feedback-empty {
-    background-color: transparent;
-    border: 2px solid #ff073a;
-  }
+.feedback-empty {
+  background-color: transparent;
+  border: 2px solid #ff073a;
 }
 * {
   margin: 0;
@@ -334,114 +332,6 @@ main {
   align-items: center;
   margin-bottom: 1rem;
   gap: 0.5rem;
-}
-
-.peg {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--text-color);
-  position: relative;
-  image-rendering: pixelated;
-  box-shadow:
-    0 0 10px currentColor,
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.peg::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  width: 8px;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-}
-
-.peg.secret {
-  background:
-    linear-gradient(45deg, #333 25%, transparent 25%),
-    linear-gradient(-45deg, #333 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, #333 75%),
-    linear-gradient(-45deg, transparent 75%, #333 75%);
-  background-size: 8px 8px;
-  background-position:
-    0 0,
-    0 4px,
-    4px -4px,
-    -4px 0px;
-  color: #666;
-}
-
-.peg.red {
-  background: var(--error-color);
-  color: var(--error-color);
-  box-shadow:
-    0 0 15px var(--error-color),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.peg.blue {
-  background: var(--neon-blue);
-  color: var(--neon-blue);
-  box-shadow:
-    0 0 15px var(--neon-blue),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.peg.green {
-  background: var(--neon-green);
-  color: var(--neon-green);
-  box-shadow:
-    0 0 15px var(--neon-green),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.peg.yellow {
-  background: var(--warning-color);
-  color: var(--warning-color);
-  box-shadow:
-    0 0 15px var(--warning-color),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.peg.purple {
-  background: var(--neon-pink);
-  color: var(--neon-pink);
-  box-shadow:
-    0 0 15px var(--neon-pink),
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.peg.orange {
-  background: #ff6b35;
-  color: #ff6b35;
-  box-shadow:
-    0 0 15px #ff6b35,
-    inset 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-.feedback {
-  margin-left: 1rem;
-  display: flex;
-  gap: 0.3rem;
-}
-
-.feedback-peg {
-  width: 15px;
-  height: 15px;
-  border: 2px solid var(--text-color);
-  image-rendering: pixelated;
-}
-
-.feedback-peg.correct {
-  background: var(--success-color);
-  box-shadow: 0 0 10px var(--success-color);
-}
-
-.feedback-peg.position {
-  background: var(--warning-color);
-  box-shadow: 0 0 10px var(--warning-color);
 }
 
 .rules {

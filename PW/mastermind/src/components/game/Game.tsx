@@ -39,6 +39,7 @@ export default function Game() {
   const [gameSettedUp, setGameSettedUp] = useState(false);
 
   const [isBotPlaying, setIsBotPlaying] = useState(false);
+  // Se o bot está adivinhando ou gerando o código secreto
   const [isBotGuessing, setIsBotGuessing] = useState(false);
   const bot = useMemo(() => new EasyMastermindBot(isBotGuessing), [isBotGuessing]);
 
@@ -157,31 +158,15 @@ export default function Game() {
       <h2 className="text-white text-2xl font-bold">Mastermind</h2>
       {!gameSettedUp && (
         <>
-          <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} />
-          {/* TODO: mover para SetupGame os botoes abaixo */}
-          <button
-            onClick={() => {
-              setIsBotPlaying(true);
-              setIsBotGuessing(false);
-              setGameSettedUp(true);
-            }}
-            className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
-          >
-            Bot Gera o Código Secreto
-          </button>
-          {/* apenas aparece se a senha secreta já estar configurada */}
-          {canSubmitGameSetup && (
-            <button
-              onClick={() => {
-                setIsBotPlaying(true);
-                setIsBotGuessing(true);
-                setGameSettedUp(true);
-              }}
-              className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
-            >
-              Bot Adivinha o Código Secreto
-            </button>
-          )}
+          <SetupGame
+            secretCode={secretCode}
+            setSecretCode={setSecretCode}
+            setIsBotPlaying={setIsBotPlaying}
+            setIsBotGuessing={setIsBotGuessing}
+            setGameSettedUp={setGameSettedUp}
+            canSubmitGameSetup={canSubmitGameSetup}
+            gameSettedUp={gameSettedUp}
+          />
         </>
       )}
       {gameSettedUp && (
@@ -192,6 +177,7 @@ export default function Game() {
           editingFeedback={editingFeedback}
           setEditingFeedback={setEditingFeedback}
           awaitingFeedback={awaitingFeedback}
+          isPlayerGuessing={!isBotGuessing}
           secretCode={secretCode}
         />
       )}

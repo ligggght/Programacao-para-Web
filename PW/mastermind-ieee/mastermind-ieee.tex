@@ -1,0 +1,325 @@
+%%------------------------------------------------------
+% UNIVERSIDADE FEDERAL DE SANTA CATARINA - UFSC
+%
+% Projeto: Master Mind - Jogo de Lógica e Dedução
+% Disciplina: Programação para Web
+% Professor: Wyllian B. da Silva
+%
+% Template: estilo IEEEtran [paper com duas colunas]
+%%------------------------------------------------------
+
+\documentclass[journal]{IEEEtran}
+
+%%------------------------------------------------------
+%% Packages
+%%------------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[dvips]{graphicx}
+\usepackage[english,brazil]{babel}
+\usepackage{pgf}
+\usepackage{epsfig}
+\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{eqparbox}
+\usepackage{hyphenat}
+\usepackage{hyperref}
+
+%%------------------------------------------------------
+%% Configurações
+%%------------------------------------------------------
+
+%%----------------- Título
+\title{Master Mind: Implementação de Jogo Clássico Utilizando React e Next.js com Estética Retrô 8-bit}
+
+\newcommand{\emailautor}{marco.arruda@grad.ufsc.br}
+\newcommand{\siglaRevista}{UFSC}
+\newcommand{\Revista}{Universidade Federal de Santa Catarina (UFSC)}
+
+%%----------------- Autores
+\newcommand{\prenomePrincipal}{Marco}
+\newcommand{\nomedomeioPrincipal}{Antônio Machado de}
+\newcommand{\sobrenomePrincipal}{Arruda}
+
+\expandafter\newcommand\csname prenome2\endcsname{Caio}
+\expandafter\newcommand\csname nomedomeio2\endcsname{César Rodrigues de}
+\expandafter\newcommand\csname sobrenome2\endcsname{Aquino}
+
+%%----------------- Autor(es)
+\author{\IEEEauthorblockN{\prenomePrincipal~\nomedomeioPrincipal~\sobrenomePrincipal\IEEEauthorrefmark{1},
+\prenome{2}~\nomedomeio{2}~\sobrenome{2}\IEEEauthorrefmark{1}}
+
+\IEEEauthorblockA{\IEEEauthorrefmark{1}Universidade Federal de Santa Catarina (UFSC)}
+
+\thanks{\Revista. Correspondência aos autores: \prenomePrincipal~\nomedomeioPrincipal~\sobrenomePrincipal~(email: \emailautor).}}
+
+%%------------------------------------------------------
+%% Resumo e Palavras-chave
+%%------------------------------------------------------
+\IEEEtitleabstractindextext{%
+\begin{abstract}
+Este trabalho apresenta a implementação de uma versão digital do jogo clássico Master Mind, desenvolvido como projeto da disciplina de Programação para Web. O jogo foi construído utilizando tecnologias web modernas como React, Next.js e TypeScript, com uma interface responsiva inspirada na estética retrô 8-bit. O projeto aborda conceitos fundamentais de desenvolvimento web, incluindo gerenciamento de estado, componentização, responsividade e implementação de lógica de jogo. A aplicação oferece dois modos de jogo: singleplayer contra IA e multiplayer local, proporcionando uma experiência completa e interativa aos usuários. Os resultados demonstram a aplicabilidade das tecnologias web modernas na criação de jogos interativos com design responsivo e experiência de usuário aprimorada.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Master Mind, Desenvolvimento Web, React, Next.js, TypeScript, Jogos Digitais, Interface Responsiva, Estética 8-bit, Programação Web.
+\end{IEEEkeywords}}
+
+%%------------------------------------------------------
+%% Início do Documento
+%%------------------------------------------------------
+\begin{document}
+
+\maketitle
+\IEEEdisplaynontitleabstractindextext
+\IEEEpeerreviewmaketitle
+
+%%------------------------------------------------------
+%% Section: Introdução
+%%------------------------------------------------------
+\section{Introdução}
+
+\IEEEPARstart{O}{Master Mind} é um jogo clássico de lógica e dedução criado em 1970 que desafia jogadores a descobrirem uma sequência secreta de cores através de tentativas sucessivas e feedback lógico. Este trabalho apresenta uma implementação digital moderna deste jogo clássico, desenvolvida como projeto prático da disciplina de Programação para Web na Universidade Federal de Santa Catarina (UFSC).
+
+O objetivo principal deste projeto é aplicar conceitos fundamentais de desenvolvimento web front-end, utilizando tecnologias modernas e boas práticas de programação. A implementação foi realizada utilizando o framework React em conjunto com Next.js, TypeScript para tipagem estática, e CSS moderno para estilização, resultando em uma aplicação web completa, responsiva e interativa.
+
+Uma característica distintiva deste projeto é a adoção de uma estética visual inspirada nos jogos retrô 8-bit dos anos 1980, criando uma experiência nostálgica que conecta o jogo clássico com sua versão digital moderna. Esta escolha estética não apenas homenageia a era de ouro dos videogames, mas também demonstra habilidades avançadas de design e implementação CSS.
+
+O trabalho está organizado da seguinte forma: a Seção II apresenta os objetivos do projeto; a Seção III descreve os materiais e métodos utilizados; a Seção IV detalha a implementação técnica; a Seção V apresenta os resultados obtidos; e a Seção VI conclui o trabalho com considerações finais.
+
+%%------------------------------------------------------
+%% Section: Objetivos
+%%------------------------------------------------------
+\section{Objetivos}
+
+\subsection{Objetivo Geral}
+Desenvolver uma aplicação web interativa do jogo Master Mind utilizando tecnologias web modernas, demonstrando competências em programação front-end, design responsivo e implementação de lógica de jogo.
+
+\subsection{Objetivos Específicos}
+\begin{itemize}
+\item Implementar o jogo Master Mind seguindo suas regras clássicas
+\item Utilizar React e Next.js para construção da interface e gerenciamento de estado
+\item Aplicar TypeScript para garantir tipagem estática e robustez do código
+\item Desenvolver interface responsiva compatível com diferentes dispositivos
+\item Criar sistema de IA para modo singleplayer
+\item Implementar modo multiplayer local
+\item Desenvolver estética visual retrô 8-bit consistente
+\item Aplicar HTML5 semântico e acessibilidade
+\item Implementar sistema de pontuação e feedback visual
+\end{itemize}
+
+%%------------------------------------------------------
+%% Section: Materiais e Métodos
+%%------------------------------------------------------
+\section{Materiais e Métodos}
+
+\subsection{Tecnologias Utilizadas}
+
+A implementação do projeto utilizou as seguintes tecnologias:
+
+\begin{itemize}
+\item \textbf{Next.js 15.5.3}: Framework React para aplicações web com renderização híbrida
+\item \textbf{React 19.1.0}: Biblioteca JavaScript para construção de interfaces de usuário
+\item \textbf{TypeScript}: Superset JavaScript com tipagem estática
+\item \textbf{Zustand 5.0.8}: Biblioteca para gerenciamento de estado global
+\item \textbf{Tailwind CSS 4.1.13}: Framework CSS utility-first
+\item \textbf{ESLint 9}: Ferramenta de análise estática de código
+\item \textbf{Material Tailwind}: Componentes UI baseados em Material Design
+\end{itemize}
+
+\subsection{Arquitetura do Sistema}
+
+A arquitetura do sistema segue o padrão de componentes React, organizada em três camadas principais:
+
+\begin{enumerate}
+\item \textbf{Camada de Apresentação}: Componentes React responsáveis pela interface do usuário
+\item \textbf{Camada de Lógica}: Implementação das regras do jogo e algoritmos
+\item \textbf{Camada de Estado}: Gerenciamento centralizado do estado da aplicação usando Zustand
+\end{enumerate}
+
+\subsection{Metodologia de Desenvolvimento}
+
+O desenvolvimento seguiu uma abordagem iterativa e incremental:
+
+\begin{enumerate}
+\item \textbf{Fase 1 - Planejamento}: Definição de requisitos e design da arquitetura
+\item \textbf{Fase 2 - Prototipação}: Desenvolvimento de protótipos da interface
+\item \textbf{Fase 3 - Implementação}: Codificação dos componentes e lógica de jogo
+\item \textbf{Fase 4 - Estilização}: Aplicação da estética 8-bit e responsividade
+\item \textbf{Fase 5 - Testes}: Validação funcional e correção de bugs
+\item \textbf{Fase 6 - Documentação}: Elaboração da documentação técnica
+\end{enumerate}
+
+%%------------------------------------------------------
+%% Section: Implementação
+%%------------------------------------------------------
+\section{Implementação}
+
+\subsection{Estrutura de Componentes}
+
+A aplicação foi estruturada seguindo princípios de componentização e reutilização de código. Os principais componentes implementados incluem:
+
+\subsubsection{Componentes da Página Inicial}
+\begin{itemize}
+\item \textbf{Header}: Cabeçalho com título e navegação
+\item \textbf{Sidebar}: Barra lateral com informações do projeto
+\item \textbf{Footer}: Rodapé com informações da disciplina
+\item \textbf{GamePreview}: Prévia visual do jogo
+\end{itemize}
+
+\subsubsection{Componentes do Jogo}
+\begin{itemize}
+\item \textbf{SingleplayerGame}: Implementação do modo single player
+\item \textbf{MultiplayerGame}: Implementação do modo multiplayer
+\item \textbf{ModeSelector}: Seletor de modo de jogo
+\end{itemize}
+
+\subsection{Lógica do Jogo}
+
+A implementação da lógica do Master Mind segue as regras clássicas:
+
+\begin{enumerate}
+\item Um jogador (ou IA) define uma sequência secreta de 4 cores
+\item O outro jogador tenta adivinhar a sequência
+\item Após cada tentativa, recebe feedback:
+   \begin{itemize}
+   \item Pinos pretos: cores corretas em posições corretas
+   \item Pinos brancos: cores corretas em posições incorretas
+   \end{itemize}
+\item O jogo termina quando a sequência é descoberta ou após 10 tentativas
+\end{enumerate}
+
+\subsection{Sistema de IA}
+
+Para o modo singleplayer, foi implementado um algoritmo de IA baseado em:
+
+\begin{itemize}
+\item Geração aleatória da sequência secreta
+\item Validação de tentativas do jogador
+\item Cálculo de feedback baseado em comparação de arrays
+\item Sistema de pontuação baseado em número de tentativas
+\end{itemize}
+
+\subsection{Design Responsivo}
+
+A interface foi desenvolvida com mobile-first approach, utilizando:
+
+\begin{itemize}
+\item Media queries CSS para diferentes breakpoints
+\item Flexbox e Grid para layouts fluidos
+\item Tipografia responsiva com unidades relativas
+\item Componentes adaptáveis a diferentes tamanhos de tela
+\end{itemize}
+
+\subsection{Estética 8-bit}
+
+A estética retrô foi implementada através de:
+
+\begin{itemize}
+\item Fonte 'Press Start 2P' do Google Fonts
+\item Paleta de cores inspirada em consoles clássicos
+\item Efeitos de glow com box-shadow e text-shadow
+\item Animações pixeladas e scanlines
+\item Bordas e elementos com estilo retrô
+\end{itemize}
+
+%%------------------------------------------------------
+%% Section: Resultados
+%%------------------------------------------------------
+\section{Resultados}
+
+\subsection{Funcionalidades Implementadas}
+
+O projeto resultou em uma aplicação web totalmente funcional com as seguintes características:
+
+\begin{itemize}
+\item Interface responsiva funcionando em desktop, tablet e mobile
+\item Dois modos de jogo completos (singleplayer e multiplayer)
+\item Sistema de pontuação funcional
+\item Feedback visual imediato para tentativas
+\item Estética 8-bit consistente em toda aplicação
+\item Navegação intuitiva entre seções
+\item Performance otimizada com Next.js
+\end{itemize}
+
+\subsection{Página Inicial}
+
+A página inicial implementa:
+
+\begin{itemize}
+\item Seção "Sobre" com descrição do projeto
+\item Seção "Objetivos" listando metas do trabalho
+\item Seção "Como Jogar" com instruções detalhadas
+\item Seção "Regras" explicando mecânicas do jogo
+\item Seção "Tecnologias" apresentando stack utilizada
+\item Layout em três colunas (header, main, sidebar)
+\item Links de navegação funcionais
+\end{itemize}
+
+\subsection{Experiência do Usuário}
+
+A aplicação oferece uma experiência de usuário aprimorada através de:
+
+\begin{itemize}
+\item Transições suaves entre estados
+\item Feedback visual claro para ações
+\item Interface intuitiva e autoexplicativa
+\item Responsividade em todos dispositivos
+\item Estética nostálgica e envolvente
+\end{itemize}
+
+\subsection{Qualidade do Código}
+
+O código fonte apresenta:
+
+\begin{itemize}
+\item Tipagem completa com TypeScript
+\item Componentes reutilizáveis e modulares
+\item Separação clara de responsabilidades
+\item Código limpo e bem documentado
+\item Padrões consistentes de nomenclatura
+\item Configuração adequada de linting
+\end{itemize}
+
+%%------------------------------------------------------
+%% Section: Conclusão
+%%------------------------------------------------------
+\section{Conclusão}
+
+Este trabalho apresentou a implementação bem-sucedida de uma versão digital do jogo clássico Master Mind utilizando tecnologias web modernas. Os objetivos propostos foram alcançados, resultando em uma aplicação funcional, responsiva e esteticamente atraente.
+
+A experiência de desenvolvimento proporcionou aprendizado significativo em:
+
+\begin{itemize}
+\item Desenvolvimento front-end com React e Next.js
+\item Gerenciamento de estado em aplicações complexas
+\item Implementação de lógica de jogo em JavaScript/TypeScript
+\item Design responsivo e mobile-first
+\item Estilização avançada com CSS moderno
+\item Boas práticas de programação e arquitetura de software
+\end{itemize}
+
+A escolha da estética 8-bit demonstrou-se acertada, criando uma identidade visual única e uma experiência nostálgica que complementa o jogo clássico. O design responsivo garante acessibilidade em diversos dispositivos, expandindo o público potencial.
+
+Como trabalhos futuros, sugere-se:
+
+\begin{itemize}
+\item Implementação de ranking online de pontuações
+\item Modo multiplayer online com WebSockets
+\item Níveis de dificuldade variáveis
+\item Sistema de conquistas e troféus
+\item Temas visuais alternativos
+\item Suporte a internacionalização (i18n)
+\end{itemize}
+
+O projeto cumpriu seu papel educacional, proporcionando experiência prática com tecnologias relevantes do mercado e demonstrando a aplicabilidade dos conceitos de Programação para Web na criação de aplicações interativas e envolventes.
+
+%%------------------------------------------------------
+%% References
+%%------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

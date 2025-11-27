@@ -1,7 +1,8 @@
-import { useEffect, useState, useCallback } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState, useCallback } from 'react';
 import { useUserStore } from '@/stores/useUserStore';
 
-const API_URL = 'http://localhost:3001/api/game';
+const API_URL = `${process.env.NEXT_PUBLIC_API_BASE_URL}/game`;
 
 interface GameState {
   gameId: string;
@@ -97,22 +98,25 @@ export function useMultiplayerGame() {
   };
 
   // Obter estado da partida
-  const fetchGameState = useCallback(async (gameId: string) => {
-    if (!user) return;
+  const fetchGameState = useCallback(
+    async (gameId: string) => {
+      if (!user) return;
 
-    try {
-      const res = await fetch(`${API_URL}/${gameId}?playerId=${user.userId}`);
-      const data = await res.json();
+      try {
+        const res = await fetch(`${API_URL}/${gameId}?playerId=${user.userId}`);
+        const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.error || 'Erro ao obter estado da partida');
+        if (!res.ok) {
+          throw new Error(data.error || 'Erro ao obter estado da partida');
+        }
+
+        setGameState(data);
+      } catch (err: any) {
+        setError(err.message);
       }
-
-      setGameState(data);
-    } catch (err: any) {
-      setError(err.message);
-    }
-  }, [user]);
+    },
+    [user],
+  );
 
   // Submeter jogada
   const submitGuess = async (gameId: string, pegs: string[]) => {

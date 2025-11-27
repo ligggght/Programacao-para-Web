@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import userRoutes from './routes/userRoutes.js';
+import gameRoutes from './routes/gameRoutes.js';
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(express.json());
 
 // Rotas da API
 app.use('/api/user', userRoutes);
+app.use('/api/game', gameRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)

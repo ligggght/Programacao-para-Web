@@ -13,7 +13,6 @@ export default function Peg({ color, onChange, enabled = true }: PegProps) {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  // Fecha o menu se clicar fora dele
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -35,10 +34,9 @@ export default function Peg({ color, onChange, enabled = true }: PegProps) {
       <div
         className={`peg peg-${color}`}
         onClick={enabled ? () => setShowMenu(true) : undefined}
-        style={{ cursor: !color ? 'pointer' : 'default' }}
-      >
-        {!color && ''}
-      </div>
+        style={{ cursor: enabled ? 'pointer' : 'default' }}
+      />
+
       {showMenu && onChange && (
         <div
           ref={menuRef}
@@ -59,11 +57,10 @@ export default function Peg({ color, onChange, enabled = true }: PegProps) {
           {PEG_COLORS.map((c) => (
             <button
               key={c}
-              className={`peg-${c}`}
+              className={`peg peg-${c}`} // <- ADICIONAR 'peg' aqui também!
               style={{
                 width: 30,
                 height: 30,
-                borderRadius: '50%',
                 border: 'none',
                 cursor: 'pointer',
               }}

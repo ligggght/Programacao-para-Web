@@ -24,10 +24,13 @@ export default function ModeSelector({ onSelectMode }: ModeSelectorProps) {
               <p>Jogue contra o computador</p>
             </button>
 
-            <button className={styles.modeButton} disabled title="Em desenvolvimento">
+            <button 
+              className={styles.modeButton} 
+              onClick={() => onSelectMode('multi')}
+            >
               <div className={styles.modeIcon}>👥</div>
               <h2>Dois Jogadores</h2>
-              <p>Em breve...</p>
+              <p>Jogue com um amigo online</p>
             </button>
           </div>
 

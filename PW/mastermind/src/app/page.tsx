@@ -8,6 +8,7 @@ import TechGrid from '../components/initialPage/techGrid';
 import HowToPlay from '../components/initialPage/howToPlay';
 import Game from '@/components/game/Game';
 import ModeSelector from '@/components/game/ModeSelector';
+import MultiplayerGame from '@/components/game/MultiplayerGame';
 
 export default function Home() {
   const [isLightMode, setIsLightMode] = useState(false);
@@ -26,7 +27,7 @@ export default function Home() {
 
   const handleSelectMode = (mode: 'single' | 'multi') => {
     setGameMode(mode);
-    setShowMenu(false); // Fecha o menu ao selecionar
+    setShowMenu(false);
   };
 
   const handleBackToMenu = () => {
@@ -43,16 +44,18 @@ export default function Home() {
       <Header toggleTheme={toggleTheme} />
       <Sidebar />
       <main>
-        {/* Se está jogando, mostra apenas o jogo */}
-        {gameMode ? (
-          <div style={{ 
-            position: 'relative',
-            minHeight: '80vh',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-            <button 
+        {/* Se está jogando single player */}
+        {gameMode === 'single' ? (
+          <div
+            style={{
+              position: 'relative',
+              minHeight: '80vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <button
               onClick={handleBackToMenu}
               style={{
                 position: 'absolute',
@@ -72,8 +75,39 @@ export default function Home() {
             </button>
             <Game />
           </div>
+        ) : gameMode === 'multi' ? (
+          /* Se está jogando multiplayer */
+          <div
+            style={{
+              position: 'relative',
+              minHeight: '80vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <button
+              onClick={handleBackToMenu}
+              style={{
+                position: 'absolute',
+                top: '1rem',
+                left: '1rem',
+                padding: '0.5rem 1rem',
+                background: '#0f3460',
+                border: '2px solid #00d4ff',
+                color: '#00d4ff',
+                cursor: 'pointer',
+                fontFamily: "'Press Start 2P', monospace",
+                fontSize: '0.7rem',
+                zIndex: 1000,
+              }}
+            >
+              ← MENU
+            </button>
+            <MultiplayerGame />
+          </div>
         ) : (
-          /* Página inicial normal */
+          /* Página inicial */
           <>
             <section id="sobre" className="content-section">
               <h2>SOBRE O PROJETO</h2>
@@ -112,7 +146,7 @@ export default function Home() {
 
       {/* Modal do ModeSelector */}
       {showMenu && !gameMode && (
-        <div 
+        <div
           style={{
             position: 'fixed',
             top: 0,
@@ -127,9 +161,9 @@ export default function Home() {
           }}
           onClick={handleCloseMenu}
         >
-          <div 
+          <div
             style={{ position: 'relative', width: '100%', maxWidth: '1200px' }}
-            onClick={(e) => e.stopPropagation()} // Evita fechar ao clicar dentro do menu
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={handleCloseMenu}

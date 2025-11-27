@@ -73,11 +73,6 @@ export default function Header({ toggleTheme }: HeaderProps) {
               CONTATO
             </a>
           </li>
-          <li>
-            <a href="DOM.html" className="hover:text-blue-400">
-              DOM
-            </a>
-          </li>
         </ul>
       </nav>
     </header>

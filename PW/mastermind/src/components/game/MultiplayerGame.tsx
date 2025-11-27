@@ -211,12 +211,12 @@ export default function MultiplayerGame() {
           <p className="text-sm mt-2">Compartilhe este ID com seu oponente!</p>
         </div>
         <div className="animate-pulse text-lg">Esperando segundo jogador entrar...</div>
-
         {secretCode.some((c) => c !== 'default') && (
           <div className="mt-4">
             <SetupGame secretCode={secretCode} setSecretCode={() => {}} enabled={false} />
           </div>
         )}
+        <ChatRoom />
       </div>
     );
   }

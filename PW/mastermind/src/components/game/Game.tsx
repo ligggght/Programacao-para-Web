@@ -158,15 +158,34 @@ export default function Game() {
       <h2 className="text-white text-2xl font-bold">Mastermind</h2>
       {!gameSettedUp && (
         <>
-          <SetupGame
-            secretCode={secretCode}
-            setSecretCode={setSecretCode}
-            setIsBotPlaying={setIsBotPlaying}
-            setIsBotGuessing={setIsBotGuessing}
-            setGameSettedUp={setGameSettedUp}
-            canSubmitGameSetup={canSubmitGameSetup}
-            gameSettedUp={gameSettedUp}
-          />
+          <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} />
+          {!gameSettedUp && (
+            <>
+              <button
+                onClick={() => {
+                  setIsBotPlaying(true);
+                  setIsBotGuessing(false);
+                  setGameSettedUp(true);
+                }}
+                className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
+              >
+                Bot Gera o Código Secreto
+              </button>
+              {/* apenas aparece se a senha secreta já estar configurada */}
+              {canSubmitGameSetup && (
+                <button
+                  onClick={() => {
+                    setIsBotPlaying(true);
+                    setIsBotGuessing(true);
+                    setGameSettedUp(true);
+                  }}
+                  className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
+                >
+                  Bot Adivinha o Código Secreto
+                </button>
+              )}
+            </>
+          )}
         </>
       )}
       {gameSettedUp && (

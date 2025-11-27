@@ -17,7 +17,7 @@ interface GameState {
     player: string;
   }>;
   winner: string | null;
-  opponentSecretCode: string[] | null;
+  secretCode: string[] | null;
 }
 
 export function useMultiplayerGame() {

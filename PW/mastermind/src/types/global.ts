@@ -17,11 +17,7 @@ export type BoardProps = {
 export type SetupGameProps = {
   secretCode: PegColor[];
   setSecretCode: (code: PegColor[]) => void;
-  setIsBotPlaying: (isBot: boolean) => void;
-  setIsBotGuessing: (isBotGuessing: boolean) => void;
-  setGameSettedUp: (isSettedUp: boolean) => void;
-  canSubmitGameSetup: boolean;
-  gameSettedUp: boolean;
+  enabled?: boolean;
 };
 export type FeedbackPegProps = {
   type: FeedbackType;

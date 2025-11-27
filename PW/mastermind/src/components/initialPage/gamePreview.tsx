@@ -6,35 +6,35 @@ export default function GamePreview() {
       <h3>PEQUENO PREVIEW DO JOGO</h3>
       <div className="mastermind-board">
         <div className="secret-row">
-          <div className="peg secret"></div>
-          <div className="peg secret"></div>
-          <div className="peg secret"></div>
-          <div className="peg secret"></div>
+          <div className="peg peg-default"></div>
+          <div className="peg peg-default"></div>
+          <div className="peg peg-default"></div>
+          <div className="peg peg-default"></div>
         </div>
 
         <div className="guess-row">
-          <div className="peg red"></div>
-          <div className="peg blue"></div>
-          <div className="peg green"></div>
-          <div className="peg yellow"></div>
+          <div className="peg peg-vermelho"></div>
+          <div className="peg peg-azul"></div>
+          <div className="peg peg-verde"></div>
+          <div className="peg peg-amarelo"></div>
           <div className="feedback">
-            <div className="feedback-peg correct"></div>
-            <div className="feedback-peg position"></div>
-            <div className="feedback-peg"></div>
-            <div className="feedback-peg"></div>
+            <div className="feedback-peg feedback-correct"></div>
+            <div className="feedback-peg feedback-wrong-position"></div>
+            <div className="feedback-peg feedback-wrong-position"></div>
+            <div className="feedback-peg feedback-wrong"></div>
           </div>
         </div>
 
         <div className="guess-row">
-          <div className="peg purple"></div>
-          <div className="peg orange"></div>
-          <div className="peg blue"></div>
-          <div className="peg green"></div>
+          <div className="peg peg-roxo"></div>
+          <div className="peg peg-laranja"></div>
+          <div className="peg peg-azul"></div>
+          <div className="peg peg-verde"></div>
           <div className="feedback">
-            <div className="feedback-peg correct"></div>
-            <div className="feedback-peg correct"></div>
-            <div className="feedback-peg position"></div>
-            <div className="feedback-peg"></div>
+            <div className="feedback-peg feedback-correct"></div>
+            <div className="feedback-peg feedback-correct"></div>
+            <div className="feedback-peg feedback-wrong-position"></div>
+            <div className="feedback-peg feedback-wrong"></div>
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ export default function Board({
           ))}
 
         <div className="grid grid-cols-4 gap-1 col-start-2 col-span-2 items-center justify-center">
-          {awaitingFeedback && !isPlayerGuessing && (
+          {!awaitingFeedback && !isPlayerGuessing && (
             <>
               <FeedbackSelector
                 feedback={editingFeedback}
@@ -57,18 +57,10 @@ export default function Board({
           )}
         </div>
       </div>
-      {awaitingFeedback && !isPlayerGuessing && (
+      {!isPlayerGuessing && (
         <>
-          {/* Mostra o código secreto quando estiver aguardando feedback */}
-          <SetupGame
-            secretCode={secretCode}
-            setSecretCode={() => {}}
-            setGameSettedUp={() => {}}
-            setIsBotGuessing={() => {}}
-            setIsBotPlaying={() => {}}
-            gameSettedUp={true}
-            canSubmitGameSetup={false}
-          />
+          {/* Mostra o código secreto */}
+          <SetupGame secretCode={secretCode} setSecretCode={() => {}} enabled={false} />
         </>
       )}
     </div>

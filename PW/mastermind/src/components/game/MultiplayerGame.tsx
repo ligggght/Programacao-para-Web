@@ -9,17 +9,36 @@ import type { PegColor, FeedbackType, RowType } from '@/types/global';
 type GamePhase = 'menu' | 'creating' | 'joining' | 'lobby' | 'playing' | 'finished';
 
 export default function MultiplayerGame() {
-  const { gameState, loading, error, createGame, joinGame, fetchGameState, submitGuess, submitFeedback } = useMultiplayerGame();
-  
+  const {
+    gameState,
+    loading,
+    error,
+    createGame,
+    joinGame,
+    fetchGameState,
+    submitGuess,
+    submitFeedback,
+  } = useMultiplayerGame();
+
   const [phase, setPhase] = useState<GamePhase>('menu');
   const [gameId, setGameId] = useState('');
   const [inputGameId, setInputGameId] = useState('');
-  const [secretCode, setSecretCode] = useState<PegColor[]>(['default', 'default', 'default', 'default']);
+  const [secretCode, setSecretCode] = useState<PegColor[]>([
+    'default',
+    'default',
+    'default',
+    'default',
+  ]);
   const [guessingRow, setGuessingRow] = useState<RowType>({
     pegs: ['default', 'default', 'default', 'default'],
     feedback: ['empty', 'empty', 'empty', 'empty'],
   });
-  const [editingFeedback, setEditingFeedback] = useState<FeedbackType[]>(['empty', 'empty', 'empty', 'empty']);
+  const [editingFeedback, setEditingFeedback] = useState<FeedbackType[]>([
+    'empty',
+    'empty',
+    'empty',
+    'empty',
+  ]);
 
   // Polling para atualizar estado do jogo
   useEffect(() => {
@@ -46,12 +65,12 @@ export default function MultiplayerGame() {
   }, [gameState]);
 
   const handleCreateGame = async () => {
-    if (secretCode.some(c => c === 'default')) {
+    if (secretCode.some((c) => c === 'default')) {
       alert('Configure o código secreto completo!');
       return;
     }
 
-    const newGameId = await createGame(secretCode.map(c => c.toString()));
+    const newGameId = await createGame(secretCode.map((c) => c.toString()));
     if (newGameId) {
       setGameId(newGameId);
       setPhase('lobby');
@@ -72,12 +91,15 @@ export default function MultiplayerGame() {
   };
 
   const handleSubmitGuess = async () => {
-    if (guessingRow.pegs.some(p => p === 'default')) {
+    if (guessingRow.pegs.some((p) => p === 'default')) {
       alert('Complete sua jogada!');
       return;
     }
 
-    const success = await submitGuess(gameId, guessingRow.pegs.map(p => p.toString()));
+    const success = await submitGuess(
+      gameId,
+      guessingRow.pegs.map((p) => p.toString()),
+    );
     if (success) {
       setGuessingRow({
         pegs: ['default', 'default', 'default', 'default'],
@@ -87,12 +109,15 @@ export default function MultiplayerGame() {
   };
 
   const handleSubmitFeedback = async () => {
-    if (editingFeedback.some(f => f === 'empty')) {
+    if (editingFeedback.some((f) => f === 'empty')) {
       alert('Complete o feedback!');
       return;
     }
 
-    const success = await submitFeedback(gameId, editingFeedback.map(f => f.toString()));
+    const success = await submitFeedback(
+      gameId,
+      editingFeedback.map((f) => f.toString()),
+    );
     if (success) {
       setEditingFeedback(['empty', 'empty', 'empty', 'empty']);
     }
@@ -103,7 +128,7 @@ export default function MultiplayerGame() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
         <h2 className="text-white text-3xl font-bold">Modo Multiplayer</h2>
-        
+
         <div className="flex flex-col gap-4 w-full max-w-md">
           <button
             onClick={() => setPhase('creating')}
@@ -130,12 +155,12 @@ export default function MultiplayerGame() {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
         <h2 className="text-white text-3xl font-bold">Criar Nova Partida</h2>
-        
+
         <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} enabled={true} />
 
         <button
           onClick={handleCreateGame}
-          disabled={loading || secretCode.some(c => c === 'default')}
+          disabled={loading || secretCode.some((c) => c === 'default')}
           className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded disabled:opacity-50"
         >
           {loading ? 'Criando...' : 'Criar Partida'}
@@ -192,15 +217,17 @@ export default function MultiplayerGame() {
       <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
         <h2 className="text-white text-3xl font-bold">Aguardando Oponente...</h2>
         <div className="text-white text-xl">
-          <p>ID da Partida: <span className="text-[#00ff41] font-bold">{gameId}</span></p>
+          <p>
+            ID da Partida: <span className="text-[#00ff41] font-bold">{gameId}</span>
+          </p>
           <p className="text-sm mt-2">Compartilhe este ID com seu oponente!</p>
         </div>
         <div className="animate-pulse text-[#00d4ff] text-lg">
           Esperando segundo jogador entrar...
         </div>
-        
+
         {/* ADICIONADO: Mostrar código secreto criado enquanto aguarda */}
-        {secretCode.some(c => c !== 'default') && (
+        {secretCode.some((c) => c !== 'default') && (
           <div className="mt-4">
             <SetupGame secretCode={secretCode} setSecretCode={() => {}} enabled={false} />
           </div>
@@ -210,13 +237,10 @@ export default function MultiplayerGame() {
   }
 
   if (phase === 'playing' && gameState) {
-    const rows: RowType[] = gameState.rows.map(r => ({
+    const rows: RowType[] = gameState.rows.map((r) => ({
       pegs: r.pegs as PegColor[],
-      feedback: r.feedback as FeedbackType[]
+      feedback: r.feedback as FeedbackType[],
     }));
-
-    const awaitingFeedback = gameState.isMyTurn && rows.length > 0 && 
-      (!rows[rows.length - 1].feedback || rows[rows.length - 1].feedback.length === 0);
 
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
@@ -230,38 +254,33 @@ export default function MultiplayerGame() {
           </p>
         </div>
 
-        {/* ADICIONADO: Card com código secreto fixo para Player 1 */}
-        {gameState.playerNumber === 1 && secretCode.some(c => c !== 'default') && (
-          <div className="bg-[#0f3460] border-2 border-[#00ff41] p-4 rounded-lg shadow-lg">
-            <h3 className="text-white text-center font-bold mb-2">Seu Código Secreto</h3>
-            <SetupGame secretCode={secretCode} setSecretCode={() => {}} enabled={false} />
-          </div>
-        )}
-
         <Board
           rows={rows}
           guessingRow={guessingRow}
           setGuessingRow={setGuessingRow}
           editingFeedback={editingFeedback}
           setEditingFeedback={setEditingFeedback}
-          awaitingFeedback={awaitingFeedback}
-          secretCode={gameState.opponentSecretCode as PegColor[] || ['default', 'default', 'default', 'default']}
+          awaitingFeedback={!gameState.isMyTurn}
+          isPlayerGuessing={gameState.playerNumber === 2}
+          secretCode={
+            (gameState.secretCode as PegColor[]) || ['default', 'default', 'default', 'default']
+          }
         />
 
-        {gameState.isMyTurn && !awaitingFeedback && gameState.playerNumber === 2 && (
+        {gameState.isMyTurn && gameState.playerNumber === 2 && (
           <button
             onClick={handleSubmitGuess}
-            disabled={loading || guessingRow.pegs.some(p => p === 'default')}
+            disabled={loading || guessingRow.pegs.some((p) => p === 'default')}
             className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-bold rounded disabled:opacity-50"
           >
             {loading ? 'Enviando...' : 'Enviar Jogada'}
           </button>
         )}
 
-        {gameState.isMyTurn && awaitingFeedback && gameState.playerNumber === 1 && (
+        {gameState.isMyTurn && gameState.playerNumber === 1 && (
           <button
             onClick={handleSubmitFeedback}
-            disabled={loading || editingFeedback.some(f => f === 'empty')}
+            disabled={loading || editingFeedback.some((f) => f === 'empty')}
             className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded disabled:opacity-50"
           >
             {loading ? 'Enviando...' : 'Enviar Feedback'}

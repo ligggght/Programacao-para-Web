@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useMultiplayerGame } from '@/hooks/useMultiplayerGame';
 import SetupGame from './SetupGame';
 import Board from './Board';
+import ChatRoom from '../chat/ChatRoom';
 import type { PegColor, FeedbackType, RowType } from '@/types/global';
 
 type GamePhase = 'menu' | 'creating' | 'joining' | 'lobby' | 'playing' | 'finished';
@@ -40,7 +41,6 @@ export default function MultiplayerGame() {
     'empty',
   ]);
 
-  // Polling para atualizar estado do jogo
   useEffect(() => {
     if (!gameId || phase === 'menu' || phase === 'creating' || phase === 'joining') return;
 
@@ -51,7 +51,6 @@ export default function MultiplayerGame() {
     return () => clearInterval(interval);
   }, [gameId, phase, fetchGameState]);
 
-  // Atualiza fase baseado no gameState
   useEffect(() => {
     if (!gameState) return;
 
@@ -123,110 +122,96 @@ export default function MultiplayerGame() {
     }
   };
 
-  // Menu inicial: escolher entre criar ou entrar
   if (phase === 'menu') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
-        <h2 className="text-white text-3xl font-bold">Modo Multiplayer</h2>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+        <h2 className="text-3xl font-bold">Modo Multiplayer</h2>
 
         <div className="flex flex-col gap-4 w-full max-w-md">
-          <button
-            onClick={() => setPhase('creating')}
-            className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded"
-          >
+          <button onClick={() => setPhase('creating')} className="px-6 py-3 font-bold rounded">
             Criar Nova Partida
           </button>
 
-          <button
-            onClick={() => setPhase('joining')}
-            className="px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white font-bold rounded"
-          >
+          <button onClick={() => setPhase('joining')} className="px-6 py-3 font-bold rounded">
             Entrar em uma Partida
           </button>
         </div>
 
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p>{error}</p>}
       </div>
     );
   }
 
-  // Tela de criar partida (apenas para Player 1)
   if (phase === 'creating') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
-        <h2 className="text-white text-3xl font-bold">Criar Nova Partida</h2>
+      <>
+        <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+          <h2 className="text-3xl font-bold">Criar Nova Partida</h2>
 
-        <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} enabled={true} />
+          <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} enabled={true} />
 
-        <button
-          onClick={handleCreateGame}
-          disabled={loading || secretCode.some((c) => c === 'default')}
-          className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded disabled:opacity-50"
-        >
-          {loading ? 'Criando...' : 'Criar Partida'}
-        </button>
+          <button
+            onClick={handleCreateGame}
+            disabled={loading || secretCode.some((c) => c === 'default')}
+            className="px-6 py-3 font-bold rounded disabled:opacity-50"
+          >
+            {loading ? 'Criando...' : 'Criar Partida'}
+          </button>
 
-        <button
-          onClick={() => setPhase('menu')}
-          className="px-4 py-2 bg-gray-500 hover:bg-gray-400 text-white rounded"
-        >
-          Voltar
-        </button>
+          <button onClick={() => setPhase('menu')} className="px-4 py-2 rounded">
+            Voltar
+          </button>
 
-        {error && <p className="text-red-500">{error}</p>}
-      </div>
+          {error && <p>{error}</p>}
+        </div>
+        <ChatRoom />
+      </>
     );
   }
 
-  // Tela de entrar na partida (Player 2 - SEM código secreto)
   if (phase === 'joining') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
-        <h2 className="text-white text-3xl font-bold">Entrar em uma Partida</h2>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+        <h2 className="text-3xl font-bold">Entrar em uma Partida</h2>
 
         <input
           type="text"
           placeholder="ID da Partida"
           value={inputGameId}
           onChange={(e) => setInputGameId(e.target.value)}
-          className="px-4 py-2 bg-[#0f3460] border-2 border-[#00d4ff] text-white rounded w-full max-w-md"
+          className="px-4 py-2 border-2 rounded w-full max-w-md"
         />
 
         <button
           onClick={handleJoinGame}
           disabled={loading || !inputGameId}
-          className="px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white font-bold rounded disabled:opacity-50"
+          className="px-6 py-3 font-bold rounded disabled:opacity-50"
         >
           {loading ? 'Entrando...' : 'Entrar na Partida'}
         </button>
 
-        <button
-          onClick={() => setPhase('menu')}
-          className="px-4 py-2 bg-gray-500 hover:bg-gray-400 text-white rounded"
-        >
+        <button onClick={() => setPhase('menu')} className="px-4 py-2 rounded">
           Voltar
         </button>
 
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p>{error}</p>}
+        <ChatRoom />
       </div>
     );
   }
 
   if (phase === 'lobby') {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
-        <h2 className="text-white text-3xl font-bold">Aguardando Oponente...</h2>
-        <div className="text-white text-xl">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+        <h2 className="text-3xl font-bold">Aguardando Oponente...</h2>
+        <div className="text-xl">
           <p>
-            ID da Partida: <span className="text-[#00ff41] font-bold">{gameId}</span>
+            ID da Partida: <span className="font-bold">{gameId}</span>
           </p>
           <p className="text-sm mt-2">Compartilhe este ID com seu oponente!</p>
         </div>
-        <div className="animate-pulse text-[#00d4ff] text-lg">
-          Esperando segundo jogador entrar...
-        </div>
+        <div className="animate-pulse text-lg">Esperando segundo jogador entrar...</div>
 
-        {/* ADICIONADO: Mostrar código secreto criado enquanto aguarda */}
         {secretCode.some((c) => c !== 'default') && (
           <div className="mt-4">
             <SetupGame secretCode={secretCode} setSecretCode={() => {}} enabled={false} />
@@ -243,15 +228,13 @@ export default function MultiplayerGame() {
     }));
 
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
-        <div className="text-white text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+        <div className="text-center">
           <h2 className="text-2xl font-bold mb-2">Partida: {gameId}</h2>
           <p className="text-lg">
-            Você é o <span className="text-[#00ff41]">Jogador {gameState.playerNumber}</span>
+            Você é o <span>Jogador {gameState.playerNumber}</span>
           </p>
-          <p className={`text-lg ${gameState.isMyTurn ? 'text-[#00ff41]' : 'text-red-500'}`}>
-            {gameState.isMyTurn ? '🟢 Sua vez!' : '🔴 Vez do oponente'}
-          </p>
+          <p className="text-lg">{gameState.isMyTurn ? 'Sua vez!' : 'Vez do oponente'}</p>
         </div>
 
         <Board
@@ -271,7 +254,7 @@ export default function MultiplayerGame() {
           <button
             onClick={handleSubmitGuess}
             disabled={loading || guessingRow.pegs.some((p) => p === 'default')}
-            className="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-white font-bold rounded disabled:opacity-50"
+            className="px-6 py-3 font-bold rounded disabled:opacity-50"
           >
             {loading ? 'Enviando...' : 'Enviar Jogada'}
           </button>
@@ -281,13 +264,13 @@ export default function MultiplayerGame() {
           <button
             onClick={handleSubmitFeedback}
             disabled={loading || editingFeedback.some((f) => f === 'empty')}
-            className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded disabled:opacity-50"
+            className="px-6 py-3 font-bold rounded disabled:opacity-50"
           >
             {loading ? 'Enviando...' : 'Enviar Feedback'}
           </button>
         )}
 
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p>{error}</p>}
       </div>
     );
   }
@@ -296,13 +279,9 @@ export default function MultiplayerGame() {
     const isWinner = gameState.winner === `player${gameState.playerNumber}`;
 
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-6 bg-[#16213e] p-6">
-        <h2 className="text-white text-4xl font-bold">
-          {isWinner ? '🎉 Você Venceu!' : '😢 Você Perdeu!'}
-        </h2>
-        <p className="text-white text-xl">
-          Vencedor: Jogador {gameState.winner?.replace('player', '')}
-        </p>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6">
+        <h2 className="text-4xl font-bold">{isWinner ? '🎉 Você Venceu!' : '😢 Você Perdeu!'}</h2>
+        <p className="text-xl">Vencedor: Jogador {gameState.winner?.replace('player', '')}</p>
         <button
           onClick={() => {
             setPhase('menu');
@@ -310,7 +289,7 @@ export default function MultiplayerGame() {
             setInputGameId('');
             setSecretCode(['default', 'default', 'default', 'default']);
           }}
-          className="px-6 py-3 bg-purple-500 hover:bg-purple-400 text-white font-bold rounded"
+          className="px-6 py-3 font-bold rounded"
         >
           Jogar Novamente
         </button>

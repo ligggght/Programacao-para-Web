@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 import userRoutes from './routes/userRoutes.js';
 import gameRoutes from './routes/gameRoutes.js';
+import chatRoutes from './routes/chatRoutes.js';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(express.json());
 // Rotas da API
 app.use('/api/user', userRoutes);
 app.use('/api/game', gameRoutes);
+app.use('/api/chat', chatRoutes);
 
 mongoose
   .connect(process.env.MONGO_URL)

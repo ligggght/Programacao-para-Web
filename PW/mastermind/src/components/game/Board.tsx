@@ -14,7 +14,7 @@ export default function Board({
   secretCode,
 }: BoardProps) {
   return (
-    <div className="flex flex-col items-center bg-[#16213e] p-6 border-[3px] border-[#00d4ff] relative shadow-[0_0_15px_#00d4ff,inset_0_0_15px_rgba(0,212,255,0.2)] w-full max-w-md gap-2">
+    <div className="flex flex-col items-center p-6 border-[3px] border-[#00d4ff] relative shadow-[0_0_15px_#00d4ff,inset_0_0_15px_rgba(0,212,255,0.2)] w-full max-w-md gap-2">
       {/* Rows jogadas */}
       {rows.map((row, idx) => (
         <div key={idx} className="grid grid-cols-4 gap-4 items-center my-2">

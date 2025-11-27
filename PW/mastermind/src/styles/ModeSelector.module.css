@@ -5,17 +5,17 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
 }
 
 .title {
   font-family: 'Press Start 2P', monospace;
   font-size: 3rem;
-  color: #00ff41;
-  text-shadow: 
-    0 0 10px #00ff41,
-    0 0 20px #00ff41,
-    0 0 30px #00ff41;
+  color: var(--neon-green);
+  text-shadow:
+    0 0 10px var(--neon-green),
+    0 0 20px var(--neon-green),
+    0 0 30px var(--neon-green);
   margin-bottom: 1rem;
   animation: glow 2s ease-in-out infinite alternate;
   text-align: center;
@@ -23,24 +23,24 @@
 
 @keyframes glow {
   from {
-    text-shadow: 
-      0 0 10px #00ff41,
-      0 0 20px #00ff41,
-      0 0 30px #00ff41;
+    text-shadow:
+      0 0 10px var(--neon-green),
+      0 0 20px var(--neon-green),
+      0 0 30px var(--neon-green);
   }
   to {
-    text-shadow: 
-      0 0 20px #00ff41,
-      0 0 30px #00ff41,
-      0 0 40px #00ff41,
-      0 0 50px #00ff41;
+    text-shadow:
+      0 0 20px var(--neon-green),
+      0 0 30px var(--neon-green),
+      0 0 40px var(--neon-green),
+      0 0 50px var(--neon-green);
   }
 }
 
 .subtitle {
   font-family: 'Press Start 2P', monospace;
   font-size: 1rem;
-  color: #00d4ff;
+  color: var(--neon-blue);
   margin-bottom: 3rem;
   text-transform: uppercase;
   text-align: center;
@@ -56,25 +56,25 @@
 }
 
 .modeButton {
-  background: #0f3460;
-  border: 3px solid #00d4ff;
+  background: var(--primary-color);
+  border: 3px solid var(--accent-color);
   padding: 2rem;
   min-width: 250px;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Press Start 2P', monospace;
-  color: #fff;
-  box-shadow: 
-    0 0 15px rgba(0, 212, 255, 0.3),
-    inset 0 0 15px rgba(0, 212, 255, 0.1);
+  color: var(--text-color);
+  box-shadow:
+    0 0 15px var(--accent-color),
+    inset 0 0 15px var(--accent-color);
   text-align: center;
 }
 
 .modeButton:hover:not(:disabled) {
-  background: #16213e;
-  border-color: #00ff41;
+  background: var(--primary-color);
+  border-color: var(--neon-green);
   transform: translateY(-5px);
-  box-shadow: 
+  box-shadow:
     0 0 25px rgba(0, 255, 65, 0.5),
     0 0 50px rgba(0, 255, 65, 0.3);
 }
@@ -103,12 +103,12 @@
 .modeButton h2 {
   font-size: 1rem;
   margin-bottom: 0.5rem;
-  color: #00d4ff;
+  color: var(--neon-blue);
 }
 
 .modeButton p {
   font-size: 0.6rem;
-  color: #aaa;
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -116,16 +116,16 @@
   text-align: center;
   max-width: 600px;
   padding: 1.5rem;
-  background: #1a1a2e;
-  border: 2px solid #0f3460;
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+  background: var(--primary-color);
+  border: 2px solid var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
   margin: 0 auto;
 }
 
 .info h3 {
   font-family: 'Press Start 2P', monospace;
   font-size: 0.9rem;
-  color: #00ff41;
+  color: var(--neon-green);
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
@@ -133,7 +133,7 @@
 .info p {
   font-family: 'Courier New', monospace;
   font-size: 0.85rem;
-  color: #ccc;
+  color: var(--text-color);
   line-height: 1.6;
 }
 

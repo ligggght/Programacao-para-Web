@@ -154,8 +154,8 @@ export default function Game() {
   // --------------------------------------------------------------------
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center gap-4 bg-[#16213e] p-6">
-      <h2 className="text-white text-2xl font-bold">Mastermind</h2>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-6">
+      <h2 className="text-neon-green text-2xl font-bold">Mastermind</h2>
       {!gameSettedUp && (
         <>
           <SetupGame secretCode={secretCode} setSecretCode={setSecretCode} />
@@ -167,7 +167,7 @@ export default function Game() {
                   setIsBotGuessing(false);
                   setGameSettedUp(true);
                 }}
-                className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
+                className="px-4 py-2 font-semibold rounded"
               >
                 Bot Gera o Código Secreto
               </button>
@@ -179,7 +179,7 @@ export default function Game() {
                     setIsBotGuessing(true);
                     setGameSettedUp(true);
                   }}
-                  className="px-4 py-2 bg-purple-500 hover:bg-purple-400 text-white font-semibold rounded"
+                  className="px-4 py-2 font-semibold rounded"
                 >
                   Bot Adivinha o Código Secreto
                 </button>
@@ -205,7 +205,7 @@ export default function Game() {
         <button
           onClick={() => setGameSettedUp(true)}
           disabled={!canSubmitGameSetup}
-          className="px-4 py-2 bg-blue-500 hover:bg-blue-400 text-white font-semibold rounded"
+          className="px-4 py-2 font-semibold rounded"
         >
           Iniciar Jogo
         </button>
@@ -219,7 +219,7 @@ export default function Game() {
             });
           }}
           disabled={!canSubmitGuess}
-          className="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-white font-semibold rounded"
+          className="px-4 py-2 font-semibold rounded"
         >
           Submeter Jogada
         </button>
@@ -231,7 +231,7 @@ export default function Game() {
             addFeedback(editingFeedback, rows.length - 1);
           }}
           disabled={!canSubmitFeedback}
-          className="px-4 py-2 bg-green-500 hover:bg-green-400 text-white font-semibold rounded"
+          className="px-4 py-2 bg-successfont-semibold rounded"
         >
           Submeter Feedback
         </button>

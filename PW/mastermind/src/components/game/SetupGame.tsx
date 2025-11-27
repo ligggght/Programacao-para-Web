@@ -5,9 +5,9 @@ export default function SetupGame({ secretCode, setSecretCode, enabled = true }:
   return (
     <>
       {enabled ? (
-        <h3 className="text-white text-lg font-bold">Configure o Código Secreto</h3>
+        <h3 className="text-lg font-bold">Configure o Código Secreto</h3>
       ) : (
-        <h3 className="text-white text-lg font-bold">Código Secreto: </h3>
+        <h3 className="text-lg font-bold">Código Secreto: </h3>
       )}
       <div className="grid grid-cols-4 gap-2 mb-4 items-center">
         {secretCode.map((color, pegIdx) => (

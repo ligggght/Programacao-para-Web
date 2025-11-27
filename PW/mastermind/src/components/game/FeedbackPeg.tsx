@@ -30,7 +30,7 @@ export default function FeedbackPeg({ type, onChange }: FeedbackPegProps) {
       {showMenu && (
         <div
           ref={menuRef}
-          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 flex gap-2 p-2 bg-gray-900 border-2 border-cyan-500 rounded-lg z-10"
+          className="absolute top-full left-1/2 -translate-x-1/2 mt-2 flex gap-2 p-2 border-2 border-cyan-500 rounded-lg z-10"
         >
           {FEEDBACK_OPTIONS.map((type) => (
             <button

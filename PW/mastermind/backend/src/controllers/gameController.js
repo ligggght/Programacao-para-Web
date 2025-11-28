@@ -111,7 +111,6 @@ export const getGameState = async (req, res) => {
       hasOpponent: !!game.player2,
       rows: game.rows,
       winner: game.winner,
-      // Mostra código secreto do oponente apenas quando for sua vez de dar feedback
       secretCode: playerNumber === 1 ? game.secretCodePlayer1 : null,
     });
   } catch (err) {

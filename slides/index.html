@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mastermind</title>
+
+    <!-- CSS principal do Reveal -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+
+    <!-- Tema (troque por: black, white, league, night, serif, simple, solarized, etc.) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/beige.css"
+    />
+
+    <!-- Ajustes de layout para impressão (opcional) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+      media="print"
+    />
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- SLIDE -->
+        <section>
+          <h1>Mastermind</h1>
+          <p>Marco Antônio Machado de Arruda – 20200415</p>
+          <p>Caio César Rodrigues de Aquino – 23102446</p>
+        </section>
+
+        <!-- SLIDE -->
+        <section>
+          <h2>STACK – MERN</h2>
+          <ul>
+            <li>MongoDB</li>
+            <li>Express</li>
+            <li>React</li>
+            <li>Node</li>
+          </ul>
+        </section>
+
+        <!-- SLIDE -->
+        <section>
+          <h2>O que é Mastermind?</h2>
+          <ul>
+            <li class="fragment">Jogo de tabuleiro para dois jogadores</li>
+            <li class="fragment">Um jogador cria um código secreto</li>
+            <li class="fragment">O outro jogador tenta adivinhar o código</li>
+            <li class="fragment">
+              Dicas sobre as posições das peças são fornecidas após cada
+              tentativa
+            </li>
+          </ul>
+        </section>
+
+        <!-- SLIDE -->
+        <section>
+          <h2>Mastermind</h2>
+          <img
+            src="mastermind.jpeg"
+            alt="Mastermind/Senha/Código Secreto"
+            width="30%"
+          />
+        </section>
+
+        <!-- SLIDE -->
+        <section>
+          <h2>Senha/Código Secreto</h2>
+          <img
+            src="mastermind2.jpg"
+            alt="Mastermind/Senha/Código Secreto"
+            width="45%"
+          />
+        </section>
+
+        <section>
+          <h2>Exemplo do Jogo</h2>
+          <img src="mastermindExemplo.png" alt="Mastermind" width="50%" />
+        </section>
+
+        <section>
+          <h2>Regras do Jogo</h2>
+          <ul>
+            <li class="fragment">6 Cores disponíveis</li>
+            <li class="fragment">O código secreto é composto por 4 cores</li>
+            <li class="fragment">As cores podem se repetir</li>
+            <li class="fragment">
+              Não há ligação entre as posições do feedback e da tentativa
+            </li>
+            <li class="fragment">
+              O jogador tem 10 tentativas para adivinhar o código
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Implementação</h1>
+        </section>
+
+        <!-- SLIDE  -->
+        <section>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 20px;
+            "
+          >
+            <h2>MongoDB</h2>
+            <img src="Mongodb.png" alt="MongoDB Logo" width="20%" />
+          </div>
+
+          <ul>
+            <li class="fragment">Usuário</li>
+            <li class="fragment">Partida</li>
+            <li class="fragment">Chat</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Usuário em MongoDB</h2>
+          <pre><code data-trim data-line-numbers>
+const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  passwordHash: { type: String, required: true },
+  avatarSeed: { type: String, required: true },
+  avatarStyle: { type: String, required: true },
+});
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Usuário na Interface</h2>
+          <img src="registrarUsuario.png" alt="Registrar Usuário" width="35%" />
+        </section>
+        <section>
+          <h2>Usuário na Interface</h2>
+          <img src="loginUsuario.png" alt="Login Usuário" width="35%" />
+        </section>
+        <section>
+          <h2>Usuário na Interface</h2>
+          <img src="alterarUsuario.png" alt="Alterar Usuário" width="35%" />
+        </section>
+
+        <section>
+          <h2>Usuário em MongoDB</h2>
+          <pre><code data-trim data-line-numbers>
+export const registerUser = async (req, res) => {
+  try {
+    const { username, password, avatarSeed, avatarStyle } = req.body;
+
+    if (!username || !password || !avatarSeed || !avatarStyle) {
+      return res.status(400).json({ error: 'Dados incompletos' });
+    }
+
+    // Evita duplicado
+    const existing = await User.findOne({ username });
+    if (existing) {
+      return res.status(409).json({ error: 'Usuário já existe' });
+    }
+
+    // Hash seguro
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      username,
+      passwordHash,
+      avatarSeed,
+      avatarStyle,
+    });
+
+    res.status(201).json({ message: 'Usuário criado', userId: user._id });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Partida em MongoDB</h2>
+          <pre><code data-trim data-line-numbers>
+const GameSchema = new mongoose.Schema({
+  gameId: { type: String, required: true, unique: true },
+  player1: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  player2: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+  secretCodePlayer1: [{ type: String }],
+  currentTurn: { type: String, enum: ['player1', 'player2'], default: 'player1' },
+  rows: [{
+    pegs: [{ type: String }],
+    feedback: [{ type: String }],
+    player: { type: String, enum: ['player1', 'player2'] }
+  }],
+  status: { type: String, enum: ['waiting', 'playing', 'finished'], default: 'waiting' },
+  winner: { type: String, default: null }
+}, {
+  timestamps: true
+});
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Mensagens em MongoDB</h2>
+          <pre><code data-trim data-line-numbers>
+const ChatMessageSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  message: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now, index: { expires: 60 } },
+});
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Mensagens em MongoDB</h2>
+          <p>Mensagens expiram após 60 segundos</p>
+        </section>
+
+        <section>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 20px;
+            "
+          >
+            <h2>Express.JS</h2>
+            <img src="express.png" alt="Express.JS Logo" width="40%" />
+          </div>
+
+          <ul>
+            <li class="fragment">Gerencia o Backend</li>
+            <li class="fragment">Rotas das API's</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Instanciação do Express</h2>
+          <pre><code data-trim data-line-numbers>
+const app = express();
+app.use(
+  cors(
+    process.env.IS_DEV === 'false' && {
+      origin: 'https://ine5646.marco.antonio.machado.arruda.vms.ufsc.br',
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+    },
+  ),
+);
+app.use(express.json());
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Rotas da Partida</h2>
+          <pre><code data-trim data-line-numbers>
+const router = express.Router();
+
+router.post('/create', createGame);
+router.post('/join', joinGame);
+router.get('/:gameId', getGameState);
+router.post('/:gameId/guess', submitGuess);
+router.post('/:gameId/feedback', submitFeedback);
+  </code></pre>
+        </section>
+
+        <section>
+          <h2>Trecho da função getGameState</h2>
+          <pre><code data-trim data-line-numbers>
+res.status(200).json({
+      gameId: game.gameId,
+      status: game.status,
+      currentTurn: game.currentTurn,
+      isMyTurn,
+      playerNumber,
+      hasOpponent: !!game.player2,
+      rows: game.rows,
+      winner: game.winner,
+      secretCode: playerNumber === 1 ? game.secretCodePlayer1 : null,
+    });
+  </code></pre>
+        </section>
+
+        <section>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 20px;
+            "
+          >
+            <h2>React</h2>
+            <img src="react.png" alt="React Logo" width="20%" />
+          </div>
+
+          <ul>
+            <li>Gerencia o Frontend</li>
+            <li>Componentes reutilizáveis</li>
+            <li>Utilizamos Typescript</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Componente do Tabuleiro</h2>
+          <pre><code data-trim data-line-numbers>
+export default function Board({
+  rows,
+  guessingRow,
+  setGuessingRow,
+  editingFeedback,
+  setEditingFeedback,
+  awaitingFeedback,
+  isPlayerGuessing,
+  secretCode,
+}: BoardProps) {
+  </code></pre>
+        </section>
+
+        <section>
+  <h2>Componente do Chat</h2>
+  <pre><code class="language-jsx" data-trim data-line-numbers>
+export default function ChatRoom() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [newMessage, setNewMessage] = useState('');
+  const user = useUserStore((state) => state.user);
+
+  const fetchMessages = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/chat`);
+    const data = await res.json();
+    setMessages(data);
+  };
+
+  const sendMessage = async () => {
+    if (!newMessage.trim()) return;
+    if (!user) return;
+    await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/chat`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user.username, message: newMessage }),
+    });
+    setNewMessage('');
+    fetchMessages();
+  };
+
+  useEffect(() => {
+    fetchMessages();
+    const interval = setInterval(fetchMessages, 2000); // atualiza a cada 2s
+    return () => clearInterval(interval);
+  }, []);
+    </code>></pre></section>
+
+<section>
+  <h2>Componente do Chat</h2>
+  <pre><code class="language-jsx" data-trim data-line-numbers>
+&lt;div className="chat-container"&gt;
+  &lt;div className="chat-messages" style={{ height: '300px', overflowY: 'auto' }}&gt;
+    {messages.map((m) =&gt; (
+      &lt;div key={m._id} className="chat-message"&gt;
+        &lt;b className="chat-username"&gt;{m.username}:&lt;/b&gt; {m.message}
+      &lt;/div&gt;
+    ))}
+  &lt;/div&gt;
+  &lt;input
+    type="text"
+    value={newMessage}
+    onChange={(e) =&gt; setNewMessage(e.target.value)}
+    placeholder="Encontre alguém!"
+    className="chat-input"
+  /&gt;
+  &lt;button onClick={sendMessage}&gt;Enviar&lt;/button&gt;
+&lt;/div&gt;
+  </code></pre>
+</section>
+
+<section>
+  <h2>Componente do Chat</h2>
+  <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              gap: 20px;
+            "
+          >
+  <img src="chat.png" alt="Interface do Chat" width="45%" />
+  <ul>
+    <li>Jogadores podem trocar mensagens</li>
+    <li>Mensagens expiram após 60 segundos</li>
+  </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Menu de seleção de jogo</h2>
+  <img src="MenuSelecao.png" alt="Menu de Seleção de Jogo" width="65%" />
+</section>
+
+<section>
+  <h1>
+    Demonstração Prática do Jogo
+  </h1>
+</section>
+      </div>
+    </div>
+    <!-- JavaScript principal do Reveal -->
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+
+    <!-- Inicialização padrão -->
+    <script>
+      Reveal.initialize({
+        hash: true, // permite navegar usando #/1/2
+        slideNumber: true, // numeração dos slides
+        transition: "fade", // fade, slide, convex, concave, zoom
+      });
+    </script>
+  </body>
+</html>

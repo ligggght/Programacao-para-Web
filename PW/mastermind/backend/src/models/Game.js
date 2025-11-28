@@ -14,7 +14,7 @@ const GameSchema = new mongoose.Schema({
   status: { type: String, enum: ['waiting', 'playing', 'finished'], default: 'waiting' },
   winner: { type: String, default: null }
 }, {
-  timestamps: true  // Adiciona createdAt e updatedAt automaticamente
+  timestamps: true
 });
 
 export default mongoose.model('Game', GameSchema);
